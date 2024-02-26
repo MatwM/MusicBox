@@ -1,0 +1,2881 @@
+   1              		.arch armv7e-m
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"adc.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.align	1
+  18              		.global	ADC_set_prediv
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  24              		.type	ADC_set_prediv, %function
+  25              	ADC_set_prediv:
+  26              	.LVL0:
+  27              	.LFB397:
+  28              		.file 1 "src/adc.c"
+   1:src/adc.c     **** #include "sys/devices.h"
+   2:src/adc.c     **** #include "sys/cm4.h"
+   3:src/adc.c     **** #include "sys/clock.h"
+   4:src/adc.c     **** 
+   5:src/adc.c     **** void ADC_set_prediv(uint32_t val) {
+  29              		.loc 1 5 35 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   6:src/adc.c     ****   ADC_common.CCR= (ADC_common.CCR & ~(3<<16)) | (val & 3)<<16;
+  34              		.loc 1 6 3 view .LVU1
+  35              		.loc 1 6 30 is_stmt 0 view .LVU2
+  36 0000 044A     		ldr	r2, .L2
+  37 0002 5368     		ldr	r3, [r2, #4]
+  38              		.loc 1 6 58 view .LVU3
+  39 0004 0004     		lsls	r0, r0, #16
+  40              	.LVL1:
+  41              		.loc 1 6 58 view .LVU4
+  42 0006 00F44030 		and	r0, r0, #196608
+  43              		.loc 1 6 35 view .LVU5
+  44 000a 23F44033 		bic	r3, r3, #196608
+  45              		.loc 1 6 47 view .LVU6
+  46 000e 1843     		orrs	r0, r0, r3
+  47              		.loc 1 6 17 view .LVU7
+  48 0010 5060     		str	r0, [r2, #4]
+   7:src/adc.c     **** }
+  49              		.loc 1 7 1 view .LVU8
+  50 0012 7047     		bx	lr
+  51              	.L3:
+  52              		.align	2
+  53              	.L2:
+  54 0014 00000000 		.word	ADC_common
+  55              		.cfi_endproc
+  56              	.LFE397:
+  57              		.size	ADC_set_prediv, .-ADC_set_prediv
+  58              		.align	1
+  59              		.global	enable_Vrefint
+  60              		.syntax unified
+  61              		.thumb
+  62              		.thumb_func
+  63              		.fpu fpv4-sp-d16
+  64              		.type	enable_Vrefint, %function
+  65              	enable_Vrefint:
+  66              	.LFB398:
+   8:src/adc.c     **** 
+   9:src/adc.c     **** void enable_Vrefint() {
+  67              		.loc 1 9 23 is_stmt 1 view -0
+  68              		.cfi_startproc
+  69              		@ args = 0, pretend = 0, frame = 0
+  70              		@ frame_needed = 0, uses_anonymous_args = 0
+  71              		@ link register save eliminated.
+  10:src/adc.c     ****   ADC_common.CCR|=(1<<23);
+  72              		.loc 1 10 3 view .LVU10
+  73              		.loc 1 10 17 is_stmt 0 view .LVU11
+  74 0018 024A     		ldr	r2, .L5
+  75 001a 5368     		ldr	r3, [r2, #4]
+  76 001c 43F40003 		orr	r3, r3, #8388608
+  77 0020 5360     		str	r3, [r2, #4]
+  11:src/adc.c     **** }
+  78              		.loc 1 11 1 view .LVU12
+  79 0022 7047     		bx	lr
+  80              	.L6:
+  81              		.align	2
+  82              	.L5:
+  83 0024 00000000 		.word	ADC_common
+  84              		.cfi_endproc
+  85              	.LFE398:
+  86              		.size	enable_Vrefint, .-enable_Vrefint
+  87              		.align	1
+  88              		.global	enable_Vbat
+  89              		.syntax unified
+  90              		.thumb
+  91              		.thumb_func
+  92              		.fpu fpv4-sp-d16
+  93              		.type	enable_Vbat, %function
+  94              	enable_Vbat:
+  95              	.LFB399:
+  12:src/adc.c     **** void enable_Vbat() {
+  96              		.loc 1 12 20 is_stmt 1 view -0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		@ link register save eliminated.
+  13:src/adc.c     ****   ADC_common.CCR|=(1<<22);
+ 101              		.loc 1 13 3 view .LVU14
+ 102              		.loc 1 13 17 is_stmt 0 view .LVU15
+ 103 0028 024A     		ldr	r2, .L8
+ 104 002a 5368     		ldr	r3, [r2, #4]
+ 105 002c 43F48003 		orr	r3, r3, #4194304
+ 106 0030 5360     		str	r3, [r2, #4]
+  14:src/adc.c     **** }
+ 107              		.loc 1 14 1 view .LVU16
+ 108 0032 7047     		bx	lr
+ 109              	.L9:
+ 110              		.align	2
+ 111              	.L8:
+ 112 0034 00000000 		.word	ADC_common
+ 113              		.cfi_endproc
+ 114              	.LFE399:
+ 115              		.size	enable_Vbat, .-enable_Vbat
+ 116              		.align	1
+ 117              		.global	disable_Vrefint
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ 121              		.fpu fpv4-sp-d16
+ 122              		.type	disable_Vrefint, %function
+ 123              	disable_Vrefint:
+ 124              	.LFB400:
+  15:src/adc.c     **** void disable_Vrefint() {
+ 125              		.loc 1 15 24 is_stmt 1 view -0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ 129              		@ link register save eliminated.
+  16:src/adc.c     ****   ADC_common.CCR&=~(1<<23);
+ 130              		.loc 1 16 3 view .LVU18
+ 131              		.loc 1 16 17 is_stmt 0 view .LVU19
+ 132 0038 024A     		ldr	r2, .L11
+ 133 003a 5368     		ldr	r3, [r2, #4]
+ 134 003c 23F40003 		bic	r3, r3, #8388608
+ 135 0040 5360     		str	r3, [r2, #4]
+  17:src/adc.c     **** }
+ 136              		.loc 1 17 1 view .LVU20
+ 137 0042 7047     		bx	lr
+ 138              	.L12:
+ 139              		.align	2
+ 140              	.L11:
+ 141 0044 00000000 		.word	ADC_common
+ 142              		.cfi_endproc
+ 143              	.LFE400:
+ 144              		.size	disable_Vrefint, .-disable_Vrefint
+ 145              		.align	1
+ 146              		.global	disable_Vbat
+ 147              		.syntax unified
+ 148              		.thumb
+ 149              		.thumb_func
+ 150              		.fpu fpv4-sp-d16
+ 151              		.type	disable_Vbat, %function
+ 152              	disable_Vbat:
+ 153              	.LFB401:
+  18:src/adc.c     **** void disable_Vbat() {
+ 154              		.loc 1 18 21 is_stmt 1 view -0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
+ 158              		@ link register save eliminated.
+  19:src/adc.c     ****   ADC_common.CCR&=~(1<<22);
+ 159              		.loc 1 19 3 view .LVU22
+ 160              		.loc 1 19 17 is_stmt 0 view .LVU23
+ 161 0048 024A     		ldr	r2, .L14
+ 162 004a 5368     		ldr	r3, [r2, #4]
+ 163 004c 23F48003 		bic	r3, r3, #4194304
+ 164 0050 5360     		str	r3, [r2, #4]
+  20:src/adc.c     **** }
+ 165              		.loc 1 20 1 view .LVU24
+ 166 0052 7047     		bx	lr
+ 167              	.L15:
+ 168              		.align	2
+ 169              	.L14:
+ 170 0054 00000000 		.word	ADC_common
+ 171              		.cfi_endproc
+ 172              	.LFE401:
+ 173              		.size	disable_Vbat, .-disable_Vbat
+ 174              		.align	1
+ 175              		.global	get_sampling_time_us
+ 176              		.syntax unified
+ 177              		.thumb
+ 178              		.thumb_func
+ 179              		.fpu fpv4-sp-d16
+ 180              		.type	get_sampling_time_us, %function
+ 181              	get_sampling_time_us:
+ 182              	.LVL2:
+ 183              	.LFB402:
+  21:src/adc.c     **** 
+  22:src/adc.c     **** float get_sampling_time_us(volatile struct ADCx_registers *ADCx, uint32_t channel) {
+ 184              		.loc 1 22 84 is_stmt 1 view -0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 0
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+  23:src/adc.c     ****   static const uint32_t ADC_smpr_cycles[8] =
+ 188              		.loc 1 23 3 view .LVU26
+  24:src/adc.c     ****     {3,15,28,56,84,112,144,480};
+  25:src/adc.c     ****   static const uint32_t ADC_prediv[4] =
+ 189              		.loc 1 25 3 view .LVU27
+  26:src/adc.c     ****     {2,4,6,8};
+  27:src/adc.c     ****   uint32_t ADC_freq=get_APB2CLK()/ADC_prediv[(ADC_common.CCR>>16)&0x3];
+ 190              		.loc 1 27 3 view .LVU28
+  22:src/adc.c     ****   static const uint32_t ADC_smpr_cycles[8] =
+ 191              		.loc 1 22 84 is_stmt 0 view .LVU29
+ 192 0058 38B5     		push	{r3, r4, r5, lr}
+ 193              		.cfi_def_cfa_offset 16
+ 194              		.cfi_offset 3, -16
+ 195              		.cfi_offset 4, -12
+ 196              		.cfi_offset 5, -8
+ 197              		.cfi_offset 14, -4
+  22:src/adc.c     ****   static const uint32_t ADC_smpr_cycles[8] =
+ 198              		.loc 1 22 84 view .LVU30
+ 199 005a 0C46     		mov	r4, r1
+ 200 005c 0546     		mov	r5, r0
+ 201              		.loc 1 27 21 view .LVU31
+ 202 005e FFF7FEFF 		bl	get_APB2CLK
+ 203              	.LVL3:
+ 204              		.loc 1 27 57 view .LVU32
+ 205 0062 174B     		ldr	r3, .L21
+ 206 0064 5A68     		ldr	r2, [r3, #4]
+ 207              		.loc 1 27 45 view .LVU33
+ 208 0066 174B     		ldr	r3, .L21+4
+ 209              		.loc 1 27 66 view .LVU34
+ 210 0068 C2F30142 		ubfx	r2, r2, #16, #2
+  28:src/adc.c     ****   uint32_t ADC_cycles;
+  29:src/adc.c     ****   if (channel<10) {
+ 211              		.loc 1 29 6 view .LVU35
+ 212 006c 092C     		cmp	r4, #9
+  27:src/adc.c     ****   uint32_t ADC_cycles;
+ 213              		.loc 1 27 12 view .LVU36
+ 214 006e 53F82220 		ldr	r2, [r3, r2, lsl #2]
+ 215 0072 B0FBF2F2 		udiv	r2, r0, r2
+ 216 0076 07EE102A 		vmov	s14, r2	@ int
+ 217              	.LVL4:
+  28:src/adc.c     ****   uint32_t ADC_cycles;
+ 218              		.loc 1 28 3 is_stmt 1 view .LVU37
+ 219              		.loc 1 29 3 view .LVU38
+ 220              		.loc 1 29 6 is_stmt 0 view .LVU39
+ 221 007a 16D8     		bhi	.L17
+ 222              	.LBB2:
+  30:src/adc.c     ****     uint32_t bit_offset=channel*3;
+ 223              		.loc 1 30 5 is_stmt 1 view .LVU40
+ 224              	.LVL5:
+  31:src/adc.c     ****     uint32_t smpr=((ADCx->SMPR2)>>bit_offset)&0x7;
+ 225              		.loc 1 31 5 view .LVU41
+ 226              		.loc 1 31 25 is_stmt 0 view .LVU42
+ 227 007c 2969     		ldr	r1, [r5, #16]
+ 228              	.LVL6:
+  32:src/adc.c     ****     ADC_cycles=ADC_smpr_cycles[smpr];
+ 229              		.loc 1 32 5 is_stmt 1 view .LVU43
+  30:src/adc.c     ****     uint32_t bit_offset=channel*3;
+ 230              		.loc 1 30 14 is_stmt 0 view .LVU44
+ 231 007e 04EB4404 		add	r4, r4, r4, lsl #1
+ 232              	.LVL7:
+  31:src/adc.c     ****     uint32_t smpr=((ADCx->SMPR2)>>bit_offset)&0x7;
+ 233              		.loc 1 31 33 view .LVU45
+ 234 0082 21FA04F4 		lsr	r4, r1, r4
+ 235              	.LVL8:
+ 236              	.L20:
+  31:src/adc.c     ****     uint32_t smpr=((ADCx->SMPR2)>>bit_offset)&0x7;
+ 237              		.loc 1 31 33 view .LVU46
+ 238              	.LBE2:
+ 239              	.LBB3:
+  33:src/adc.c     ****   } else if (channel<=18) {
+  34:src/adc.c     ****     uint32_t bit_offset=(channel-10)*3;
+  35:src/adc.c     ****     uint32_t smpr=((ADCx->SMPR1)>>bit_offset)&0x7;
+ 240              		.loc 1 35 14 view .LVU47
+ 241 0086 04F00704 		and	r4, r4, #7
+  36:src/adc.c     ****     ADC_cycles=ADC_smpr_cycles[smpr];
+ 242              		.loc 1 36 15 view .LVU48
+ 243 008a 03EB8404 		add	r4, r3, r4, lsl #2
+ 244 008e 2369     		ldr	r3, [r4, #16]
+ 245              	.LVL9:
+ 246              	.L18:
+ 247              		.loc 1 36 15 view .LVU49
+ 248              	.LBE3:
+  37:src/adc.c     ****   } else {
+  38:src/adc.c     ****     ADC_cycles=0;
+  39:src/adc.c     ****   }
+  40:src/adc.c     ****   return (ADC_cycles/(ADC_freq/1000000.));
+ 249              		.loc 1 40 3 is_stmt 1 view .LVU50
+ 250              		.loc 1 40 31 is_stmt 0 view .LVU51
+ 251 0090 DFED0D6A 		vldr.32	s13, .L21+8
+ 252 0094 B8EE477A 		vcvt.f32.u32	s14, s14
+ 253              	.LVL10:
+ 254              		.loc 1 40 21 view .LVU52
+ 255 0098 07EE903A 		vmov	s15, r3	@ int
+ 256              		.loc 1 40 31 view .LVU53
+ 257 009c 87EE260A 		vdiv.f32	s0, s14, s13
+ 258              		.loc 1 40 21 view .LVU54
+ 259 00a0 F8EE677A 		vcvt.f32.u32	s15, s15
+  41:src/adc.c     **** }
+ 260              		.loc 1 41 1 view .LVU55
+ 261 00a4 87EE800A 		vdiv.f32	s0, s15, s0
+ 262 00a8 38BD     		pop	{r3, r4, r5, pc}
+ 263              	.LVL11:
+ 264              	.L17:
+  33:src/adc.c     ****     uint32_t bit_offset=(channel-10)*3;
+ 265              		.loc 1 33 10 is_stmt 1 view .LVU56
+  33:src/adc.c     ****     uint32_t bit_offset=(channel-10)*3;
+ 266              		.loc 1 33 13 is_stmt 0 view .LVU57
+ 267 00aa 122C     		cmp	r4, #18
+ 268 00ac 06D8     		bhi	.L19
+ 269              	.LBB4:
+  34:src/adc.c     ****     uint32_t smpr=((ADCx->SMPR1)>>bit_offset)&0x7;
+ 270              		.loc 1 34 5 is_stmt 1 view .LVU58
+ 271              	.LVL12:
+  35:src/adc.c     ****     ADC_cycles=ADC_smpr_cycles[smpr];
+ 272              		.loc 1 35 5 view .LVU59
+  35:src/adc.c     ****     ADC_cycles=ADC_smpr_cycles[smpr];
+ 273              		.loc 1 35 25 is_stmt 0 view .LVU60
+ 274 00ae EA68     		ldr	r2, [r5, #12]
+ 275              	.LVL13:
+  36:src/adc.c     ****   } else {
+ 276              		.loc 1 36 5 is_stmt 1 view .LVU61
+  34:src/adc.c     ****     uint32_t smpr=((ADCx->SMPR1)>>bit_offset)&0x7;
+ 277              		.loc 1 34 37 is_stmt 0 view .LVU62
+ 278 00b0 04EB4404 		add	r4, r4, r4, lsl #1
+ 279              	.LVL14:
+  34:src/adc.c     ****     uint32_t smpr=((ADCx->SMPR1)>>bit_offset)&0x7;
+ 280              		.loc 1 34 14 view .LVU63
+ 281 00b4 1E3C     		subs	r4, r4, #30
+  35:src/adc.c     ****     ADC_cycles=ADC_smpr_cycles[smpr];
+ 282              		.loc 1 35 33 view .LVU64
+ 283 00b6 22FA04F4 		lsr	r4, r2, r4
+ 284 00ba E4E7     		b	.L20
+ 285              	.LVL15:
+ 286              	.L19:
+  35:src/adc.c     ****     ADC_cycles=ADC_smpr_cycles[smpr];
+ 287              		.loc 1 35 33 view .LVU65
+ 288              	.LBE4:
+  38:src/adc.c     ****   }
+ 289              		.loc 1 38 15 view .LVU66
+ 290 00bc 0023     		movs	r3, #0
+ 291 00be E7E7     		b	.L18
+ 292              	.L22:
+ 293              		.align	2
+ 294              	.L21:
+ 295 00c0 00000000 		.word	ADC_common
+ 296 00c4 00000000 		.word	.LANCHOR0
+ 297 00c8 00247449 		.word	1232348160
+ 298              		.cfi_endproc
+ 299              	.LFE402:
+ 300              		.size	get_sampling_time_us, .-get_sampling_time_us
+ 301              		.align	1
+ 302              		.global	ADC_set_sampling_time
+ 303              		.syntax unified
+ 304              		.thumb
+ 305              		.thumb_func
+ 306              		.fpu fpv4-sp-d16
+ 307              		.type	ADC_set_sampling_time, %function
+ 308              	ADC_set_sampling_time:
+ 309              	.LVL16:
+ 310              	.LFB403:
+  42:src/adc.c     **** 
+  43:src/adc.c     **** void ADC_set_sampling_time(volatile struct ADCx_registers *ADCx,
+  44:src/adc.c     **** 				   uint32_t channel,uint32_t smpr)
+  45:src/adc.c     **** {
+ 311              		.loc 1 45 1 is_stmt 1 view -0
+ 312              		.cfi_startproc
+ 313              		@ args = 0, pretend = 0, frame = 0
+ 314              		@ frame_needed = 0, uses_anonymous_args = 0
+  46:src/adc.c     ****   if (channel <= 9)
+ 315              		.loc 1 46 3 view .LVU68
+ 316              		.loc 1 46 6 is_stmt 0 view .LVU69
+ 317 00cc 0929     		cmp	r1, #9
+  45:src/adc.c     ****   if (channel <= 9)
+ 318              		.loc 1 45 1 view .LVU70
+ 319 00ce 10B5     		push	{r4, lr}
+ 320              		.cfi_def_cfa_offset 8
+ 321              		.cfi_offset 4, -8
+ 322              		.cfi_offset 14, -4
+ 323              		.loc 1 46 6 view .LVU71
+ 324 00d0 0BD8     		bhi	.L24
+  47:src/adc.c     ****     {    ADCx->SMPR2=
+ 325              		.loc 1 47 10 is_stmt 1 view .LVU72
+  48:src/adc.c     **** 	(ADCx->SMPR2 & ~(7<<(3*channel))) |
+ 326              		.loc 1 48 7 is_stmt 0 view .LVU73
+ 327 00d2 0369     		ldr	r3, [r0, #16]
+ 328              		.loc 1 48 24 view .LVU74
+ 329 00d4 01EB4101 		add	r1, r1, r1, lsl #1
+ 330              	.LVL17:
+ 331              		.loc 1 48 20 view .LVU75
+ 332 00d8 0724     		movs	r4, #7
+ 333 00da 8C40     		lsls	r4, r4, r1
+ 334              		.loc 1 48 15 view .LVU76
+ 335 00dc 23EA0403 		bic	r3, r3, r4
+  49:src/adc.c     **** 	(smpr<<(3*channel));
+ 336              		.loc 1 49 7 view .LVU77
+ 337 00e0 02FA01F1 		lsl	r1, r2, r1
+  48:src/adc.c     **** 	(ADCx->SMPR2 & ~(7<<(3*channel))) |
+ 338              		.loc 1 48 36 view .LVU78
+ 339 00e4 1943     		orrs	r1, r1, r3
+  47:src/adc.c     ****     {    ADCx->SMPR2=
+ 340              		.loc 1 47 21 view .LVU79
+ 341 00e6 0161     		str	r1, [r0, #16]
+ 342              	.L23:
+  50:src/adc.c     ****     }
+  51:src/adc.c     ****   else if (channel <= 18 )
+  52:src/adc.c     ****     {
+  53:src/adc.c     ****       ADCx->SMPR1=
+  54:src/adc.c     **** 	(ADCx->SMPR1 & ~(7<<(3*(channel-10)))) |
+  55:src/adc.c     **** 	(smpr<<(3*(channel-10)));
+  56:src/adc.c     ****     }
+  57:src/adc.c     **** }
+ 343              		.loc 1 57 1 view .LVU80
+ 344 00e8 10BD     		pop	{r4, pc}
+ 345              	.LVL18:
+ 346              	.L24:
+  51:src/adc.c     ****     {
+ 347              		.loc 1 51 8 is_stmt 1 view .LVU81
+  51:src/adc.c     ****     {
+ 348              		.loc 1 51 11 is_stmt 0 view .LVU82
+ 349 00ea 1229     		cmp	r1, #18
+ 350 00ec FCD8     		bhi	.L23
+  53:src/adc.c     **** 	(ADCx->SMPR1 & ~(7<<(3*(channel-10)))) |
+ 351              		.loc 1 53 7 is_stmt 1 view .LVU83
+  54:src/adc.c     **** 	(smpr<<(3*(channel-10)));
+ 352              		.loc 1 54 24 is_stmt 0 view .LVU84
+ 353 00ee 01EB4101 		add	r1, r1, r1, lsl #1
+ 354              	.LVL19:
+  54:src/adc.c     **** 	(smpr<<(3*(channel-10)));
+ 355              		.loc 1 54 7 view .LVU85
+ 356 00f2 C368     		ldr	r3, [r0, #12]
+  54:src/adc.c     **** 	(smpr<<(3*(channel-10)));
+ 357              		.loc 1 54 24 view .LVU86
+ 358 00f4 1E39     		subs	r1, r1, #30
+  54:src/adc.c     **** 	(smpr<<(3*(channel-10)));
+ 359              		.loc 1 54 20 view .LVU87
+ 360 00f6 0724     		movs	r4, #7
+ 361 00f8 8C40     		lsls	r4, r4, r1
+  54:src/adc.c     **** 	(smpr<<(3*(channel-10)));
+ 362              		.loc 1 54 15 view .LVU88
+ 363 00fa 23EA0403 		bic	r3, r3, r4
+  55:src/adc.c     ****     }
+ 364              		.loc 1 55 7 view .LVU89
+ 365 00fe 02FA01F1 		lsl	r1, r2, r1
+  54:src/adc.c     **** 	(smpr<<(3*(channel-10)));
+ 366              		.loc 1 54 41 view .LVU90
+ 367 0102 1943     		orrs	r1, r1, r3
+  53:src/adc.c     **** 	(ADCx->SMPR1 & ~(7<<(3*(channel-10)))) |
+ 368              		.loc 1 53 18 view .LVU91
+ 369 0104 C160     		str	r1, [r0, #12]
+ 370              		.loc 1 57 1 view .LVU92
+ 371 0106 EFE7     		b	.L23
+ 372              		.cfi_endproc
+ 373              	.LFE403:
+ 374              		.size	ADC_set_sampling_time, .-ADC_set_sampling_time
+ 375              		.align	1
+ 376              		.global	ADC_set_sequence
+ 377              		.syntax unified
+ 378              		.thumb
+ 379              		.thumb_func
+ 380              		.fpu fpv4-sp-d16
+ 381              		.type	ADC_set_sequence, %function
+ 382              	ADC_set_sequence:
+ 383              	.LVL20:
+ 384              	.LFB404:
+  58:src/adc.c     **** 
+  59:src/adc.c     **** void ADC_set_sequence(volatile struct ADCx_registers *ADCx,uint32_t* sequence,uint32_t len) {
+ 385              		.loc 1 59 93 is_stmt 1 view -0
+ 386              		.cfi_startproc
+ 387              		@ args = 0, pretend = 0, frame = 16
+ 388              		@ frame_needed = 0, uses_anonymous_args = 0
+  60:src/adc.c     ****   uint32_t i,sqr[3]={0,0,0};
+ 389              		.loc 1 60 3 view .LVU94
+  59:src/adc.c     ****   uint32_t i,sqr[3]={0,0,0};
+ 390              		.loc 1 59 93 is_stmt 0 view .LVU95
+ 391 0108 F0B5     		push	{r4, r5, r6, r7, lr}
+ 392              		.cfi_def_cfa_offset 20
+ 393              		.cfi_offset 4, -20
+ 394              		.cfi_offset 5, -16
+ 395              		.cfi_offset 6, -12
+ 396              		.cfi_offset 7, -8
+ 397              		.cfi_offset 14, -4
+ 398              		.loc 1 60 14 view .LVU96
+ 399 010a 0023     		movs	r3, #0
+  59:src/adc.c     ****   uint32_t i,sqr[3]={0,0,0};
+ 400              		.loc 1 59 93 view .LVU97
+ 401 010c 85B0     		sub	sp, sp, #20
+ 402              		.cfi_def_cfa_offset 40
+ 403              		.loc 1 60 14 view .LVU98
+ 404 010e CDE90133 		strd	r3, r3, [sp, #4]
+ 405 0112 0393     		str	r3, [sp, #12]
+  61:src/adc.c     ****   for (i=0;i<len;i++) {
+ 406              		.loc 1 61 3 is_stmt 1 view .LVU99
+ 407              	.LVL21:
+  62:src/adc.c     ****     sqr[i/6]|=(sequence[i]&31)<<(5*(i%6));
+ 408              		.loc 1 62 10 is_stmt 0 view .LVU100
+ 409 0114 0626     		movs	r6, #6
+ 410              	.LVL22:
+ 411              	.L27:
+  61:src/adc.c     ****   for (i=0;i<len;i++) {
+ 412              		.loc 1 61 12 is_stmt 1 discriminator 1 view .LVU101
+  61:src/adc.c     ****   for (i=0;i<len;i++) {
+ 413              		.loc 1 61 3 is_stmt 0 discriminator 1 view .LVU102
+ 414 0116 9342     		cmp	r3, r2
+ 415 0118 0CD1     		bne	.L28
+  63:src/adc.c     ****   }
+  64:src/adc.c     ****   sqr[2]|=(((len-1)&15)<<20);
+ 416              		.loc 1 64 3 is_stmt 1 view .LVU103
+ 417              		.loc 1 64 17 is_stmt 0 view .LVU104
+ 418 011a 013B     		subs	r3, r3, #1
+ 419              	.LVL23:
+ 420              		.loc 1 64 9 view .LVU105
+ 421 011c 039A     		ldr	r2, [sp, #12]
+ 422              	.LVL24:
+ 423              		.loc 1 64 24 view .LVU106
+ 424 011e 1B05     		lsls	r3, r3, #20
+ 425              	.LVL25:
+ 426              		.loc 1 64 24 view .LVU107
+ 427 0120 03F47003 		and	r3, r3, #15728640
+ 428              		.loc 1 64 9 view .LVU108
+ 429 0124 1343     		orrs	r3, r3, r2
+  65:src/adc.c     ****   ADCx->SQR1=sqr[2];
+ 430              		.loc 1 65 3 is_stmt 1 view .LVU109
+ 431              		.loc 1 65 13 is_stmt 0 view .LVU110
+ 432 0126 C362     		str	r3, [r0, #44]
+  66:src/adc.c     ****   ADCx->SQR2=sqr[1];
+ 433              		.loc 1 66 3 is_stmt 1 view .LVU111
+ 434              		.loc 1 66 17 is_stmt 0 view .LVU112
+ 435 0128 029B     		ldr	r3, [sp, #8]
+ 436              		.loc 1 66 13 view .LVU113
+ 437 012a 0363     		str	r3, [r0, #48]
+  67:src/adc.c     ****   ADCx->SQR3=sqr[0];
+ 438              		.loc 1 67 3 is_stmt 1 view .LVU114
+ 439              		.loc 1 67 17 is_stmt 0 view .LVU115
+ 440 012c 019B     		ldr	r3, [sp, #4]
+ 441              		.loc 1 67 13 view .LVU116
+ 442 012e 4363     		str	r3, [r0, #52]
+  68:src/adc.c     **** }
+ 443              		.loc 1 68 1 view .LVU117
+ 444 0130 05B0     		add	sp, sp, #20
+ 445              		.cfi_remember_state
+ 446              		.cfi_def_cfa_offset 20
+ 447              		@ sp needed
+ 448 0132 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 449              	.LVL26:
+ 450              	.L28:
+ 451              		.cfi_restore_state
+  62:src/adc.c     ****   }
+ 452              		.loc 1 62 5 is_stmt 1 discriminator 3 view .LVU118
+  62:src/adc.c     ****   }
+ 453              		.loc 1 62 13 is_stmt 0 discriminator 3 view .LVU119
+ 454 0134 04AC     		add	r4, sp, #16
+  62:src/adc.c     ****   }
+ 455              		.loc 1 62 10 discriminator 3 view .LVU120
+ 456 0136 B3FBF6F5 		udiv	r5, r3, r6
+  62:src/adc.c     ****   }
+ 457              		.loc 1 62 13 discriminator 3 view .LVU121
+ 458 013a 04EB8507 		add	r7, r4, r5, lsl #2
+  62:src/adc.c     ****   }
+ 459              		.loc 1 62 27 discriminator 3 view .LVU122
+ 460 013e 51F82340 		ldr	r4, [r1, r3, lsl #2]
+  62:src/adc.c     ****   }
+ 461              		.loc 1 62 38 discriminator 3 view .LVU123
+ 462 0142 06FB1535 		mls	r5, r6, r5, r3
+  62:src/adc.c     ****   }
+ 463              		.loc 1 62 35 discriminator 3 view .LVU124
+ 464 0146 05EB8505 		add	r5, r5, r5, lsl #2
+  62:src/adc.c     ****   }
+ 465              		.loc 1 62 27 discriminator 3 view .LVU125
+ 466 014a 04F01F04 		and	r4, r4, #31
+  62:src/adc.c     ****   }
+ 467              		.loc 1 62 31 discriminator 3 view .LVU126
+ 468 014e AC40     		lsls	r4, r4, r5
+  62:src/adc.c     ****   }
+ 469              		.loc 1 62 13 discriminator 3 view .LVU127
+ 470 0150 57F80C5C 		ldr	r5, [r7, #-12]
+ 471 0154 2C43     		orrs	r4, r4, r5
+ 472 0156 47F80C4C 		str	r4, [r7, #-12]
+  61:src/adc.c     ****     sqr[i/6]|=(sequence[i]&31)<<(5*(i%6));
+ 473              		.loc 1 61 18 is_stmt 1 discriminator 3 view .LVU128
+  61:src/adc.c     ****     sqr[i/6]|=(sequence[i]&31)<<(5*(i%6));
+ 474              		.loc 1 61 19 is_stmt 0 discriminator 3 view .LVU129
+ 475 015a 0133     		adds	r3, r3, #1
+ 476              	.LVL27:
+  61:src/adc.c     ****     sqr[i/6]|=(sequence[i]&31)<<(5*(i%6));
+ 477              		.loc 1 61 19 discriminator 3 view .LVU130
+ 478 015c DBE7     		b	.L27
+ 479              		.cfi_endproc
+ 480              	.LFE404:
+ 481              		.size	ADC_set_sequence, .-ADC_set_sequence
+ 482              		.align	1
+ 483              		.global	ADC_init_sequence
+ 484              		.syntax unified
+ 485              		.thumb
+ 486              		.thumb_func
+ 487              		.fpu fpv4-sp-d16
+ 488              		.type	ADC_init_sequence, %function
+ 489              	ADC_init_sequence:
+ 490              	.LVL28:
+ 491              	.LFB405:
+  69:src/adc.c     **** 
+  70:src/adc.c     **** 
+  71:src/adc.c     **** void ADC_init_sequence(volatile struct ADCx_registers *ADCx,uint32_t* sequence,uint32_t len) {
+ 492              		.loc 1 71 94 is_stmt 1 view -0
+ 493              		.cfi_startproc
+ 494              		@ args = 0, pretend = 0, frame = 0
+ 495              		@ frame_needed = 0, uses_anonymous_args = 0
+ 496              		@ link register save eliminated.
+  72:src/adc.c     ****   ADCx->CR2= 0x00000001; /* EOCS=1, ADON=1 */
+ 497              		.loc 1 72 3 view .LVU132
+  71:src/adc.c     ****   ADCx->CR2= 0x00000001; /* EOCS=1, ADON=1 */
+ 498              		.loc 1 71 94 is_stmt 0 view .LVU133
+ 499 015e 10B4     		push	{r4}
+ 500              		.cfi_def_cfa_offset 4
+ 501              		.cfi_offset 4, -4
+ 502              		.loc 1 72 12 view .LVU134
+ 503 0160 0124     		movs	r4, #1
+ 504 0162 8460     		str	r4, [r0, #8]
+  73:src/adc.c     ****   ADCx->CR1= 0x00000100; /* SCAN=1 */
+ 505              		.loc 1 73 3 is_stmt 1 view .LVU135
+ 506              		.loc 1 73 12 is_stmt 0 view .LVU136
+ 507 0164 4FF48074 		mov	r4, #256
+ 508 0168 4460     		str	r4, [r0, #4]
+  74:src/adc.c     ****   ADC_set_sequence(ADCx,sequence,len);
+ 509              		.loc 1 74 3 is_stmt 1 view .LVU137
+  75:src/adc.c     **** }
+ 510              		.loc 1 75 1 is_stmt 0 view .LVU138
+ 511 016a 5DF8044B 		ldr	r4, [sp], #4
+ 512              		.cfi_restore 4
+ 513              		.cfi_def_cfa_offset 0
+  74:src/adc.c     ****   ADC_set_sequence(ADCx,sequence,len);
+ 514              		.loc 1 74 3 view .LVU139
+ 515 016e FFF7FEBF 		b	ADC_set_sequence
+ 516              	.LVL29:
+  74:src/adc.c     ****   ADC_set_sequence(ADCx,sequence,len);
+ 517              		.loc 1 74 3 view .LVU140
+ 518              		.cfi_endproc
+ 519              	.LFE405:
+ 520              		.size	ADC_init_sequence, .-ADC_init_sequence
+ 521              		.align	1
+ 522              		.global	ADC_init_single_channel
+ 523              		.syntax unified
+ 524              		.thumb
+ 525              		.thumb_func
+ 526              		.fpu fpv4-sp-d16
+ 527              		.type	ADC_init_single_channel, %function
+ 528              	ADC_init_single_channel:
+ 529              	.LVL30:
+ 530              	.LFB406:
+  76:src/adc.c     **** 
+  77:src/adc.c     **** void ADC_init_single_channel(volatile struct ADCx_registers *ADCx,uint32_t channel) {
+ 531              		.loc 1 77 85 is_stmt 1 view -0
+ 532              		.cfi_startproc
+ 533              		@ args = 0, pretend = 0, frame = 8
+ 534              		@ frame_needed = 0, uses_anonymous_args = 0
+  78:src/adc.c     ****   ADCx->CR2= 0x00000001; /* EOCS=0, ADON=1 */
+ 535              		.loc 1 78 3 view .LVU142
+  77:src/adc.c     ****   ADCx->CR2= 0x00000001; /* EOCS=0, ADON=1 */
+ 536              		.loc 1 77 85 is_stmt 0 view .LVU143
+ 537 0172 07B5     		push	{r0, r1, r2, lr}
+ 538              		.cfi_def_cfa_offset 16
+ 539              		.cfi_offset 14, -4
+ 540              		.loc 1 78 12 view .LVU144
+ 541 0174 0122     		movs	r2, #1
+  77:src/adc.c     ****   ADCx->CR2= 0x00000001; /* EOCS=0, ADON=1 */
+ 542              		.loc 1 77 85 view .LVU145
+ 543 0176 0191     		str	r1, [sp, #4]
+  79:src/adc.c     ****   ADCx->CR1= 0x00000000; /* SCAN=0 */
+ 544              		.loc 1 79 12 view .LVU146
+ 545 0178 0021     		movs	r1, #0
+ 546              	.LVL31:
+  78:src/adc.c     ****   ADCx->CR2= 0x00000001; /* EOCS=0, ADON=1 */
+ 547              		.loc 1 78 12 view .LVU147
+ 548 017a 8260     		str	r2, [r0, #8]
+ 549              		.loc 1 79 3 is_stmt 1 view .LVU148
+ 550              		.loc 1 79 12 is_stmt 0 view .LVU149
+ 551 017c 4160     		str	r1, [r0, #4]
+  80:src/adc.c     ****   ADC_set_sequence(ADCx,&channel,1);
+ 552              		.loc 1 80 3 is_stmt 1 view .LVU150
+ 553 017e 01A9     		add	r1, sp, #4
+ 554              	.LVL32:
+ 555              		.loc 1 80 3 is_stmt 0 view .LVU151
+ 556 0180 FFF7FEFF 		bl	ADC_set_sequence
+ 557              	.LVL33:
+  81:src/adc.c     **** }
+ 558              		.loc 1 81 1 view .LVU152
+ 559 0184 03B0     		add	sp, sp, #12
+ 560              		.cfi_def_cfa_offset 4
+ 561              		@ sp needed
+ 562 0186 5DF804FB 		ldr	pc, [sp], #4
+ 563              		.cfi_endproc
+ 564              	.LFE406:
+ 565              		.size	ADC_init_single_channel, .-ADC_init_single_channel
+ 566              		.align	1
+ 567              		.global	ADC_convert_sequence
+ 568              		.syntax unified
+ 569              		.thumb
+ 570              		.thumb_func
+ 571              		.fpu fpv4-sp-d16
+ 572              		.type	ADC_convert_sequence, %function
+ 573              	ADC_convert_sequence:
+ 574              	.LVL34:
+ 575              	.LFB407:
+  82:src/adc.c     **** 
+  83:src/adc.c     **** uint32_t ADC_convert_sequence(volatile struct ADCx_registers *ADCx,uint32_t *data_buffer) {
+ 576              		.loc 1 83 91 is_stmt 1 view -0
+ 577              		.cfi_startproc
+ 578              		@ args = 0, pretend = 0, frame = 0
+ 579              		@ frame_needed = 0, uses_anonymous_args = 0
+  84:src/adc.c     ****   uint32_t len=((ADCx->SQR1>>20)&15) +1;
+ 580              		.loc 1 84 3 view .LVU154
+  85:src/adc.c     ****   uint32_t i=0;
+  86:src/adc.c     ****   ADCx->SR = 0; /* clear flags */
+ 581              		.loc 1 86 12 is_stmt 0 view .LVU155
+ 582 018a 0023     		movs	r3, #0
+  84:src/adc.c     ****   uint32_t len=((ADCx->SQR1>>20)&15) +1;
+ 583              		.loc 1 84 22 view .LVU156
+ 584 018c C26A     		ldr	r2, [r0, #44]
+  83:src/adc.c     ****   uint32_t len=((ADCx->SQR1>>20)&15) +1;
+ 585              		.loc 1 83 91 view .LVU157
+ 586 018e 10B5     		push	{r4, lr}
+ 587              		.cfi_def_cfa_offset 8
+ 588              		.cfi_offset 4, -8
+ 589              		.cfi_offset 14, -4
+ 590              		.loc 1 86 12 view .LVU158
+ 591 0190 0360     		str	r3, [r0]
+  87:src/adc.c     ****   ADCx->CR2|=(1<<10); /* enable EOC after each conversion */
+ 592              		.loc 1 87 12 view .LVU159
+ 593 0192 8468     		ldr	r4, [r0, #8]
+ 594 0194 44F48064 		orr	r4, r4, #1024
+ 595 0198 8460     		str	r4, [r0, #8]
+  88:src/adc.c     ****   ADCx->CR2|=(1<<30); /* SWSTART=1 */
+ 596              		.loc 1 88 12 view .LVU160
+ 597 019a 8468     		ldr	r4, [r0, #8]
+  84:src/adc.c     ****   uint32_t i=0;
+ 598              		.loc 1 84 33 view .LVU161
+ 599 019c C2F30352 		ubfx	r2, r2, #20, #4
+ 600              		.loc 1 88 12 view .LVU162
+ 601 01a0 44F08044 		orr	r4, r4, #1073741824
+  84:src/adc.c     ****   uint32_t i=0;
+ 602              		.loc 1 84 12 view .LVU163
+ 603 01a4 0132     		adds	r2, r2, #1
+ 604              	.LVL35:
+  85:src/adc.c     ****   ADCx->SR = 0; /* clear flags */
+ 605              		.loc 1 85 3 is_stmt 1 view .LVU164
+  86:src/adc.c     ****   ADCx->CR2|=(1<<10); /* enable EOC after each conversion */
+ 606              		.loc 1 86 3 view .LVU165
+  87:src/adc.c     ****   ADCx->CR2|=(1<<30); /* SWSTART=1 */
+ 607              		.loc 1 87 3 view .LVU166
+ 608              		.loc 1 88 3 view .LVU167
+ 609              		.loc 1 88 12 is_stmt 0 view .LVU168
+ 610 01a6 8460     		str	r4, [r0, #8]
+  89:src/adc.c     ****   while (i<len) {
+ 611              		.loc 1 89 3 is_stmt 1 view .LVU169
+ 612              		.loc 1 89 9 view .LVU170
+ 613 01a8 0439     		subs	r1, r1, #4
+ 614              	.LVL36:
+ 615              	.L32:
+  90:src/adc.c     ****     while ((ADCx->SR&0x22)==0); /* Wait for EOC==1 or OVR==1 */
+ 616              		.loc 1 90 31 discriminator 1 view .LVU171
+ 617              		.loc 1 90 11 discriminator 1 view .LVU172
+ 618              		.loc 1 90 17 is_stmt 0 discriminator 1 view .LVU173
+ 619 01aa 0468     		ldr	r4, [r0]
+ 620              		.loc 1 90 11 discriminator 1 view .LVU174
+ 621 01ac 14F0220F 		tst	r4, #34
+ 622 01b0 FBD0     		beq	.L32
+  91:src/adc.c     ****     if ((ADCx->SR&0x20)!=0) break;
+ 623              		.loc 1 91 5 is_stmt 1 view .LVU175
+ 624              		.loc 1 91 14 is_stmt 0 view .LVU176
+ 625 01b2 0468     		ldr	r4, [r0]
+ 626              		.loc 1 91 8 view .LVU177
+ 627 01b4 A406     		lsls	r4, r4, #26
+ 628 01b6 05D4     		bmi	.L31
+  92:src/adc.c     ****     data_buffer[i++]=ADCx->DR; /* reading clears flag */
+ 629              		.loc 1 92 5 is_stmt 1 view .LVU178
+ 630              		.loc 1 92 18 is_stmt 0 view .LVU179
+ 631 01b8 0133     		adds	r3, r3, #1
+ 632              	.LVL37:
+ 633              		.loc 1 92 26 view .LVU180
+ 634 01ba C46C     		ldr	r4, [r0, #76]
+ 635              		.loc 1 92 21 view .LVU181
+ 636 01bc 41F8044F 		str	r4, [r1, #4]!
+  89:src/adc.c     ****     while ((ADCx->SR&0x22)==0); /* Wait for EOC==1 or OVR==1 */
+ 637              		.loc 1 89 9 is_stmt 1 view .LVU182
+ 638 01c0 9A42     		cmp	r2, r3
+ 639 01c2 F2D8     		bhi	.L32
+ 640              	.LVL38:
+ 641              	.L31:
+  93:src/adc.c     ****   }
+  94:src/adc.c     ****   return i; /* i<len if overrun */
+  95:src/adc.c     **** }
+ 642              		.loc 1 95 1 is_stmt 0 view .LVU183
+ 643 01c4 1846     		mov	r0, r3
+ 644              	.LVL39:
+ 645              		.loc 1 95 1 view .LVU184
+ 646 01c6 10BD     		pop	{r4, pc}
+ 647              		.cfi_endproc
+ 648              	.LFE407:
+ 649              		.size	ADC_convert_sequence, .-ADC_convert_sequence
+ 650              		.align	1
+ 651              		.global	ADC_convert_single_channel
+ 652              		.syntax unified
+ 653              		.thumb
+ 654              		.thumb_func
+ 655              		.fpu fpv4-sp-d16
+ 656              		.type	ADC_convert_single_channel, %function
+ 657              	ADC_convert_single_channel:
+ 658              	.LVL40:
+ 659              	.LFB408:
+  96:src/adc.c     **** 
+  97:src/adc.c     **** uint32_t ADC_convert_single_channel(volatile struct ADCx_registers *ADCx) {
+ 660              		.loc 1 97 75 is_stmt 1 view -0
+ 661              		.cfi_startproc
+ 662              		@ args = 0, pretend = 0, frame = 0
+ 663              		@ frame_needed = 0, uses_anonymous_args = 0
+ 664              		@ link register save eliminated.
+  98:src/adc.c     ****   ADCx->SR = 0; /* clear flags */
+ 665              		.loc 1 98 3 view .LVU186
+ 666              		.loc 1 98 12 is_stmt 0 view .LVU187
+ 667 01c8 0023     		movs	r3, #0
+ 668 01ca 0360     		str	r3, [r0]
+  99:src/adc.c     ****   ADCx->CR2|=(1<<30); /* SWSTART=1 */
+ 669              		.loc 1 99 3 is_stmt 1 view .LVU188
+ 670              		.loc 1 99 12 is_stmt 0 view .LVU189
+ 671 01cc 8368     		ldr	r3, [r0, #8]
+ 672 01ce 43F08043 		orr	r3, r3, #1073741824
+ 673 01d2 8360     		str	r3, [r0, #8]
+ 100:src/adc.c     ****   while ((ADCx->SR&0x2)==0); /* Wait for EOC==1 */
+ 674              		.loc 1 100 3 is_stmt 1 view .LVU190
+ 675              	.L39:
+ 676              		.loc 1 100 28 discriminator 1 view .LVU191
+ 677              		.loc 1 100 9 discriminator 1 view .LVU192
+ 678              		.loc 1 100 15 is_stmt 0 discriminator 1 view .LVU193
+ 679 01d4 0368     		ldr	r3, [r0]
+ 680              		.loc 1 100 9 discriminator 1 view .LVU194
+ 681 01d6 9B07     		lsls	r3, r3, #30
+ 682 01d8 FCD5     		bpl	.L39
+ 101:src/adc.c     ****   return ADCx->DR;
+ 683              		.loc 1 101 3 is_stmt 1 view .LVU195
+ 684              		.loc 1 101 14 is_stmt 0 view .LVU196
+ 685 01da C06C     		ldr	r0, [r0, #76]
+ 686              	.LVL41:
+ 102:src/adc.c     **** }
+ 687              		.loc 1 102 1 view .LVU197
+ 688 01dc 7047     		bx	lr
+ 689              		.cfi_endproc
+ 690              	.LFE408:
+ 691              		.size	ADC_convert_single_channel, .-ADC_convert_single_channel
+ 692              		.section	.rodata
+ 693              		.align	2
+ 694              		.set	.LANCHOR0,. + 0
+ 695              		.type	ADC_prediv.1, %object
+ 696              		.size	ADC_prediv.1, 16
+ 697              	ADC_prediv.1:
+ 698 0000 02000000 		.word	2
+ 699 0004 04000000 		.word	4
+ 700 0008 06000000 		.word	6
+ 701 000c 08000000 		.word	8
+ 702              		.type	ADC_smpr_cycles.0, %object
+ 703              		.size	ADC_smpr_cycles.0, 32
+ 704              	ADC_smpr_cycles.0:
+ 705 0010 03000000 		.word	3
+ 706 0014 0F000000 		.word	15
+ 707 0018 1C000000 		.word	28
+ 708 001c 38000000 		.word	56
+ 709 0020 54000000 		.word	84
+ 710 0024 70000000 		.word	112
+ 711 0028 90000000 		.word	144
+ 712 002c E0010000 		.word	480
+ 713              		.text
+ 714              	.Letext0:
+ 715              		.file 2 "src/sys/devices.h"
+ 716              		.file 3 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 717              		.file 4 "src/sys/clock.h"
+ 718 01de 00BF     		.section	.debug_info,"",%progbits
+ 719              	.Ldebug_info0:
+ 720 0000 B1050000 		.4byte	0x5b1
+ 721 0004 0400     		.2byte	0x4
+ 722 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 723 000a 04       		.byte	0x4
+ 724 000b 01       		.uleb128 0x1
+ 725 000c 7A010000 		.4byte	.LASF49
+ 726 0010 0C       		.byte	0xc
+ 727 0011 3E030000 		.4byte	.LASF50
+ 728 0015 1D020000 		.4byte	.LASF51
+ 729 0019 00000000 		.4byte	.Ltext0
+ 730 001d DE010000 		.4byte	.Letext0-.Ltext0
+ 731 0021 00000000 		.4byte	.Ldebug_line0
+ 732 0025 02       		.uleb128 0x2
+ 733 0026 01       		.byte	0x1
+ 734 0027 06       		.byte	0x6
+ 735 0028 EE000000 		.4byte	.LASF0
+ 736 002c 02       		.uleb128 0x2
+ 737 002d 02       		.byte	0x2
+ 738 002e 05       		.byte	0x5
+ 739 002f 31000000 		.4byte	.LASF1
+ 740 0033 02       		.uleb128 0x2
+ 741 0034 04       		.byte	0x4
+ 742 0035 05       		.byte	0x5
+ 743 0036 A8000000 		.4byte	.LASF2
+ 744 003a 02       		.uleb128 0x2
+ 745 003b 08       		.byte	0x8
+ 746 003c 05       		.byte	0x5
+ 747 003d 8F000000 		.4byte	.LASF3
+ 748 0041 02       		.uleb128 0x2
+ 749 0042 01       		.byte	0x1
+ 750 0043 08       		.byte	0x8
+ 751 0044 E0000000 		.4byte	.LASF4
+ 752 0048 02       		.uleb128 0x2
+ 753 0049 02       		.byte	0x2
+ 754 004a 07       		.byte	0x7
+ 755 004b 67010000 		.4byte	.LASF5
+ 756 004f 03       		.uleb128 0x3
+ 757 0050 11010000 		.4byte	.LASF52
+ 758 0054 03       		.byte	0x3
+ 759 0055 34       		.byte	0x34
+ 760 0056 19       		.byte	0x19
+ 761 0057 60000000 		.4byte	0x60
+ 762 005b 04       		.uleb128 0x4
+ 763 005c 4F000000 		.4byte	0x4f
+ 764 0060 02       		.uleb128 0x2
+ 765 0061 04       		.byte	0x4
+ 766 0062 07       		.byte	0x7
+ 767 0063 8D020000 		.4byte	.LASF6
+ 768 0067 02       		.uleb128 0x2
+ 769 0068 08       		.byte	0x8
+ 770 0069 07       		.byte	0x7
+ 771 006a FA000000 		.4byte	.LASF7
+ 772 006e 05       		.uleb128 0x5
+ 773 006f 04       		.byte	0x4
+ 774 0070 05       		.byte	0x5
+ 775 0071 696E7400 		.ascii	"int\000"
+ 776 0075 02       		.uleb128 0x2
+ 777 0076 04       		.byte	0x4
+ 778 0077 07       		.byte	0x7
+ 779 0078 1A010000 		.4byte	.LASF8
+ 780 007c 06       		.uleb128 0x6
+ 781 007d 4F000000 		.4byte	0x4f
+ 782 0081 8C000000 		.4byte	0x8c
+ 783 0085 07       		.uleb128 0x7
+ 784 0086 75000000 		.4byte	0x75
+ 785 008a 02       		.byte	0x2
+ 786 008b 00       		.byte	0
+ 787 008c 08       		.uleb128 0x8
+ 788 008d 63000000 		.4byte	.LASF23
+ 789 0091 50       		.byte	0x50
+ 790 0092 02       		.byte	0x2
+ 791 0093 F8       		.byte	0xf8
+ 792 0094 08       		.byte	0x8
+ 793 0095 A9010000 		.4byte	0x1a9
+ 794 0099 09       		.uleb128 0x9
+ 795 009a 535200   		.ascii	"SR\000"
+ 796 009d 02       		.byte	0x2
+ 797 009e F9       		.byte	0xf9
+ 798 009f 0C       		.byte	0xc
+ 799 00a0 4F000000 		.4byte	0x4f
+ 800 00a4 00       		.byte	0
+ 801 00a5 09       		.uleb128 0x9
+ 802 00a6 43523100 		.ascii	"CR1\000"
+ 803 00aa 02       		.byte	0x2
+ 804 00ab FA       		.byte	0xfa
+ 805 00ac 0C       		.byte	0xc
+ 806 00ad 4F000000 		.4byte	0x4f
+ 807 00b1 04       		.byte	0x4
+ 808 00b2 09       		.uleb128 0x9
+ 809 00b3 43523200 		.ascii	"CR2\000"
+ 810 00b7 02       		.byte	0x2
+ 811 00b8 FB       		.byte	0xfb
+ 812 00b9 0C       		.byte	0xc
+ 813 00ba 4F000000 		.4byte	0x4f
+ 814 00be 08       		.byte	0x8
+ 815 00bf 0A       		.uleb128 0xa
+ 816 00c0 23030000 		.4byte	.LASF9
+ 817 00c4 02       		.byte	0x2
+ 818 00c5 FC       		.byte	0xfc
+ 819 00c6 0C       		.byte	0xc
+ 820 00c7 4F000000 		.4byte	0x4f
+ 821 00cb 0C       		.byte	0xc
+ 822 00cc 0A       		.uleb128 0xa
+ 823 00cd 29030000 		.4byte	.LASF10
+ 824 00d1 02       		.byte	0x2
+ 825 00d2 FD       		.byte	0xfd
+ 826 00d3 0C       		.byte	0xc
+ 827 00d4 4F000000 		.4byte	0x4f
+ 828 00d8 10       		.byte	0x10
+ 829 00d9 0A       		.uleb128 0xa
+ 830 00da CE000000 		.4byte	.LASF11
+ 831 00de 02       		.byte	0x2
+ 832 00df FE       		.byte	0xfe
+ 833 00e0 0C       		.byte	0xc
+ 834 00e1 4F000000 		.4byte	0x4f
+ 835 00e5 14       		.byte	0x14
+ 836 00e6 0A       		.uleb128 0xa
+ 837 00e7 D4000000 		.4byte	.LASF12
+ 838 00eb 02       		.byte	0x2
+ 839 00ec FF       		.byte	0xff
+ 840 00ed 0C       		.byte	0xc
+ 841 00ee 4F000000 		.4byte	0x4f
+ 842 00f2 18       		.byte	0x18
+ 843 00f3 0B       		.uleb128 0xb
+ 844 00f4 61010000 		.4byte	.LASF13
+ 845 00f8 02       		.byte	0x2
+ 846 00f9 0001     		.2byte	0x100
+ 847 00fb 0C       		.byte	0xc
+ 848 00fc 4F000000 		.4byte	0x4f
+ 849 0100 1C       		.byte	0x1c
+ 850 0101 0B       		.uleb128 0xb
+ 851 0102 DA000000 		.4byte	.LASF14
+ 852 0106 02       		.byte	0x2
+ 853 0107 0101     		.2byte	0x101
+ 854 0109 0C       		.byte	0xc
+ 855 010a 4F000000 		.4byte	0x4f
+ 856 010e 20       		.byte	0x20
+ 857 010f 0C       		.uleb128 0xc
+ 858 0110 48545200 		.ascii	"HTR\000"
+ 859 0114 02       		.byte	0x2
+ 860 0115 0201     		.2byte	0x102
+ 861 0117 0C       		.byte	0xc
+ 862 0118 4F000000 		.4byte	0x4f
+ 863 011c 24       		.byte	0x24
+ 864 011d 0C       		.uleb128 0xc
+ 865 011e 4C545200 		.ascii	"LTR\000"
+ 866 0122 02       		.byte	0x2
+ 867 0123 0301     		.2byte	0x103
+ 868 0125 0C       		.byte	0xc
+ 869 0126 4F000000 		.4byte	0x4f
+ 870 012a 28       		.byte	0x28
+ 871 012b 0B       		.uleb128 0xb
+ 872 012c F5020000 		.4byte	.LASF15
+ 873 0130 02       		.byte	0x2
+ 874 0131 0401     		.2byte	0x104
+ 875 0133 0C       		.byte	0xc
+ 876 0134 4F000000 		.4byte	0x4f
+ 877 0138 2C       		.byte	0x2c
+ 878 0139 0B       		.uleb128 0xb
+ 879 013a FA020000 		.4byte	.LASF16
+ 880 013e 02       		.byte	0x2
+ 881 013f 0501     		.2byte	0x105
+ 882 0141 0C       		.byte	0xc
+ 883 0142 4F000000 		.4byte	0x4f
+ 884 0146 30       		.byte	0x30
+ 885 0147 0B       		.uleb128 0xb
+ 886 0148 FF020000 		.4byte	.LASF17
+ 887 014c 02       		.byte	0x2
+ 888 014d 0601     		.2byte	0x106
+ 889 014f 0C       		.byte	0xc
+ 890 0150 4F000000 		.4byte	0x4f
+ 891 0154 34       		.byte	0x34
+ 892 0155 0B       		.uleb128 0xb
+ 893 0156 5E000000 		.4byte	.LASF18
+ 894 015a 02       		.byte	0x2
+ 895 015b 0701     		.2byte	0x107
+ 896 015d 0C       		.byte	0xc
+ 897 015e 4F000000 		.4byte	0x4f
+ 898 0162 38       		.byte	0x38
+ 899 0163 0B       		.uleb128 0xb
+ 900 0164 1D000000 		.4byte	.LASF19
+ 901 0168 02       		.byte	0x2
+ 902 0169 0801     		.2byte	0x108
+ 903 016b 0C       		.byte	0xc
+ 904 016c 4F000000 		.4byte	0x4f
+ 905 0170 3C       		.byte	0x3c
+ 906 0171 0B       		.uleb128 0xb
+ 907 0172 22000000 		.4byte	.LASF20
+ 908 0176 02       		.byte	0x2
+ 909 0177 0901     		.2byte	0x109
+ 910 0179 0C       		.byte	0xc
+ 911 017a 4F000000 		.4byte	0x4f
+ 912 017e 40       		.byte	0x40
+ 913 017f 0B       		.uleb128 0xb
+ 914 0180 27000000 		.4byte	.LASF21
+ 915 0184 02       		.byte	0x2
+ 916 0185 0A01     		.2byte	0x10a
+ 917 0187 0C       		.byte	0xc
+ 918 0188 4F000000 		.4byte	0x4f
+ 919 018c 44       		.byte	0x44
+ 920 018d 0B       		.uleb128 0xb
+ 921 018e 2C000000 		.4byte	.LASF22
+ 922 0192 02       		.byte	0x2
+ 923 0193 0B01     		.2byte	0x10b
+ 924 0195 0C       		.byte	0xc
+ 925 0196 4F000000 		.4byte	0x4f
+ 926 019a 48       		.byte	0x48
+ 927 019b 0C       		.uleb128 0xc
+ 928 019c 445200   		.ascii	"DR\000"
+ 929 019f 02       		.byte	0x2
+ 930 01a0 0C01     		.2byte	0x10c
+ 931 01a2 0C       		.byte	0xc
+ 932 01a3 4F000000 		.4byte	0x4f
+ 933 01a7 4C       		.byte	0x4c
+ 934 01a8 00       		.byte	0
+ 935 01a9 0D       		.uleb128 0xd
+ 936 01aa 8C000000 		.4byte	0x8c
+ 937 01ae 0E       		.uleb128 0xe
+ 938 01af 3C010000 		.4byte	.LASF24
+ 939 01b3 0C       		.byte	0xc
+ 940 01b4 02       		.byte	0x2
+ 941 01b5 0F01     		.2byte	0x10f
+ 942 01b7 08       		.byte	0x8
+ 943 01b8 E7010000 		.4byte	0x1e7
+ 944 01bc 0C       		.uleb128 0xc
+ 945 01bd 43535200 		.ascii	"CSR\000"
+ 946 01c1 02       		.byte	0x2
+ 947 01c2 1001     		.2byte	0x110
+ 948 01c4 0C       		.byte	0xc
+ 949 01c5 4F000000 		.4byte	0x4f
+ 950 01c9 00       		.byte	0
+ 951 01ca 0C       		.uleb128 0xc
+ 952 01cb 43435200 		.ascii	"CCR\000"
+ 953 01cf 02       		.byte	0x2
+ 954 01d0 1101     		.2byte	0x111
+ 955 01d2 0C       		.byte	0xc
+ 956 01d3 4F000000 		.4byte	0x4f
+ 957 01d7 04       		.byte	0x4
+ 958 01d8 0C       		.uleb128 0xc
+ 959 01d9 43445200 		.ascii	"CDR\000"
+ 960 01dd 02       		.byte	0x2
+ 961 01de 1201     		.2byte	0x112
+ 962 01e0 0C       		.byte	0xc
+ 963 01e1 4F000000 		.4byte	0x4f
+ 964 01e5 08       		.byte	0x8
+ 965 01e6 00       		.byte	0
+ 966 01e7 0D       		.uleb128 0xd
+ 967 01e8 AE010000 		.4byte	0x1ae
+ 968 01ec 0F       		.uleb128 0xf
+ 969 01ed 7E000000 		.4byte	.LASF29
+ 970 01f1 02       		.byte	0x2
+ 971 01f2 5602     		.2byte	0x256
+ 972 01f4 2D       		.byte	0x2d
+ 973 01f5 E7010000 		.4byte	0x1e7
+ 974 01f9 10       		.uleb128 0x10
+ 975 01fa AB020000 		.4byte	.LASF25
+ 976 01fe 01       		.byte	0x1
+ 977 01ff 61       		.byte	0x61
+ 978 0200 0A       		.byte	0xa
+ 979 0201 4F000000 		.4byte	0x4f
+ 980 0205 C8010000 		.4byte	.LFB408
+ 981 0209 16000000 		.4byte	.LFE408-.LFB408
+ 982 020d 01       		.uleb128 0x1
+ 983 020e 9C       		.byte	0x9c
+ 984 020f 28020000 		.4byte	0x228
+ 985 0213 11       		.uleb128 0x11
+ 986 0214 00000000 		.4byte	.LASF27
+ 987 0218 01       		.byte	0x1
+ 988 0219 61       		.byte	0x61
+ 989 021a 45       		.byte	0x45
+ 990 021b 28020000 		.4byte	0x228
+ 991 021f 04000000 		.4byte	.LLST18
+ 992 0223 00000000 		.4byte	.LVUS18
+ 993 0227 00       		.byte	0
+ 994 0228 12       		.uleb128 0x12
+ 995 0229 04       		.byte	0x4
+ 996 022a A9010000 		.4byte	0x1a9
+ 997 022e 10       		.uleb128 0x10
+ 998 022f 78020000 		.4byte	.LASF26
+ 999 0233 01       		.byte	0x1
+ 1000 0234 53       		.byte	0x53
+ 1001 0235 0A       		.byte	0xa
+ 1002 0236 4F000000 		.4byte	0x4f
+ 1003 023a 8A010000 		.4byte	.LFB407
+ 1004 023e 3E000000 		.4byte	.LFE407-.LFB407
+ 1005 0242 01       		.uleb128 0x1
+ 1006 0243 9C       		.byte	0x9c
+ 1007 0244 97020000 		.4byte	0x297
+ 1008 0248 11       		.uleb128 0x11
+ 1009 0249 00000000 		.4byte	.LASF27
+ 1010 024d 01       		.byte	0x1
+ 1011 024e 53       		.byte	0x53
+ 1012 024f 3F       		.byte	0x3f
+ 1013 0250 28020000 		.4byte	0x228
+ 1014 0254 29000000 		.4byte	.LLST14
+ 1015 0258 25000000 		.4byte	.LVUS14
+ 1016 025c 11       		.uleb128 0x11
+ 1017 025d B1000000 		.4byte	.LASF28
+ 1018 0261 01       		.byte	0x1
+ 1019 0262 53       		.byte	0x53
+ 1020 0263 4E       		.byte	0x4e
+ 1021 0264 97020000 		.4byte	0x297
+ 1022 0268 4E000000 		.4byte	.LLST15
+ 1023 026c 4A000000 		.4byte	.LVUS15
+ 1024 0270 13       		.uleb128 0x13
+ 1025 0271 6C656E00 		.ascii	"len\000"
+ 1026 0275 01       		.byte	0x1
+ 1027 0276 54       		.byte	0x54
+ 1028 0277 0C       		.byte	0xc
+ 1029 0278 4F000000 		.4byte	0x4f
+ 1030 027c 71000000 		.4byte	.LLST16
+ 1031 0280 6F000000 		.4byte	.LVUS16
+ 1032 0284 13       		.uleb128 0x13
+ 1033 0285 6900     		.ascii	"i\000"
+ 1034 0287 01       		.byte	0x1
+ 1035 0288 55       		.byte	0x55
+ 1036 0289 0C       		.byte	0xc
+ 1037 028a 4F000000 		.4byte	0x4f
+ 1038 028e 88000000 		.4byte	.LLST17
+ 1039 0292 84000000 		.4byte	.LVUS17
+ 1040 0296 00       		.byte	0
+ 1041 0297 12       		.uleb128 0x12
+ 1042 0298 04       		.byte	0x4
+ 1043 0299 4F000000 		.4byte	0x4f
+ 1044 029d 14       		.uleb128 0x14
+ 1045 029e 05000000 		.4byte	.LASF31
+ 1046 02a2 01       		.byte	0x1
+ 1047 02a3 4D       		.byte	0x4d
+ 1048 02a4 06       		.byte	0x6
+ 1049 02a5 72010000 		.4byte	.LFB406
+ 1050 02a9 18000000 		.4byte	.LFE406-.LFB406
+ 1051 02ad 01       		.uleb128 0x1
+ 1052 02ae 9C       		.byte	0x9c
+ 1053 02af F1020000 		.4byte	0x2f1
+ 1054 02b3 15       		.uleb128 0x15
+ 1055 02b4 00000000 		.4byte	.LASF27
+ 1056 02b8 01       		.byte	0x1
+ 1057 02b9 4D       		.byte	0x4d
+ 1058 02ba 3E       		.byte	0x3e
+ 1059 02bb 28020000 		.4byte	0x228
+ 1060 02bf 01       		.uleb128 0x1
+ 1061 02c0 50       		.byte	0x50
+ 1062 02c1 11       		.uleb128 0x11
+ 1063 02c2 6B020000 		.4byte	.LASF30
+ 1064 02c6 01       		.byte	0x1
+ 1065 02c7 4D       		.byte	0x4d
+ 1066 02c8 4C       		.byte	0x4c
+ 1067 02c9 4F000000 		.4byte	0x4f
+ 1068 02cd AD000000 		.4byte	.LLST13
+ 1069 02d1 A7000000 		.4byte	.LVUS13
+ 1070 02d5 16       		.uleb128 0x16
+ 1071 02d6 84010000 		.4byte	.LVL33
+ 1072 02da 55030000 		.4byte	0x355
+ 1073 02de 17       		.uleb128 0x17
+ 1074 02df 01       		.uleb128 0x1
+ 1075 02e0 50       		.byte	0x50
+ 1076 02e1 02       		.uleb128 0x2
+ 1077 02e2 70       		.byte	0x70
+ 1078 02e3 00       		.sleb128 0
+ 1079 02e4 17       		.uleb128 0x17
+ 1080 02e5 01       		.uleb128 0x1
+ 1081 02e6 51       		.byte	0x51
+ 1082 02e7 02       		.uleb128 0x2
+ 1083 02e8 71       		.byte	0x71
+ 1084 02e9 00       		.sleb128 0
+ 1085 02ea 17       		.uleb128 0x17
+ 1086 02eb 01       		.uleb128 0x1
+ 1087 02ec 52       		.byte	0x52
+ 1088 02ed 01       		.uleb128 0x1
+ 1089 02ee 31       		.byte	0x31
+ 1090 02ef 00       		.byte	0
+ 1091 02f0 00       		.byte	0
+ 1092 02f1 14       		.uleb128 0x14
+ 1093 02f2 D6020000 		.4byte	.LASF32
+ 1094 02f6 01       		.byte	0x1
+ 1095 02f7 47       		.byte	0x47
+ 1096 02f8 06       		.byte	0x6
+ 1097 02f9 5E010000 		.4byte	.LFB405
+ 1098 02fd 14000000 		.4byte	.LFE405-.LFB405
+ 1099 0301 01       		.uleb128 0x1
+ 1100 0302 9C       		.byte	0x9c
+ 1101 0303 55030000 		.4byte	0x355
+ 1102 0307 15       		.uleb128 0x15
+ 1103 0308 00000000 		.4byte	.LASF27
+ 1104 030c 01       		.byte	0x1
+ 1105 030d 47       		.byte	0x47
+ 1106 030e 38       		.byte	0x38
+ 1107 030f 28020000 		.4byte	0x228
+ 1108 0313 01       		.uleb128 0x1
+ 1109 0314 50       		.byte	0x50
+ 1110 0315 15       		.uleb128 0x15
+ 1111 0316 3B000000 		.4byte	.LASF33
+ 1112 031a 01       		.byte	0x1
+ 1113 031b 47       		.byte	0x47
+ 1114 031c 47       		.byte	0x47
+ 1115 031d 97020000 		.4byte	0x297
+ 1116 0321 01       		.uleb128 0x1
+ 1117 0322 51       		.byte	0x51
+ 1118 0323 18       		.uleb128 0x18
+ 1119 0324 6C656E00 		.ascii	"len\000"
+ 1120 0328 01       		.byte	0x1
+ 1121 0329 47       		.byte	0x47
+ 1122 032a 59       		.byte	0x59
+ 1123 032b 4F000000 		.4byte	0x4f
+ 1124 032f DC000000 		.4byte	.LLST12
+ 1125 0333 D8000000 		.4byte	.LVUS12
+ 1126 0337 19       		.uleb128 0x19
+ 1127 0338 72010000 		.4byte	.LVL29
+ 1128 033c 55030000 		.4byte	0x355
+ 1129 0340 17       		.uleb128 0x17
+ 1130 0341 01       		.uleb128 0x1
+ 1131 0342 50       		.byte	0x50
+ 1132 0343 02       		.uleb128 0x2
+ 1133 0344 70       		.byte	0x70
+ 1134 0345 00       		.sleb128 0
+ 1135 0346 17       		.uleb128 0x17
+ 1136 0347 01       		.uleb128 0x1
+ 1137 0348 51       		.byte	0x51
+ 1138 0349 02       		.uleb128 0x2
+ 1139 034a 71       		.byte	0x71
+ 1140 034b 00       		.sleb128 0
+ 1141 034c 17       		.uleb128 0x17
+ 1142 034d 01       		.uleb128 0x1
+ 1143 034e 52       		.byte	0x52
+ 1144 034f 03       		.uleb128 0x3
+ 1145 0350 F3       		.byte	0xf3
+ 1146 0351 01       		.uleb128 0x1
+ 1147 0352 52       		.byte	0x52
+ 1148 0353 00       		.byte	0
+ 1149 0354 00       		.byte	0
+ 1150 0355 14       		.uleb128 0x14
+ 1151 0356 BD000000 		.4byte	.LASF34
+ 1152 035a 01       		.byte	0x1
+ 1153 035b 3B       		.byte	0x3b
+ 1154 035c 06       		.byte	0x6
+ 1155 035d 08010000 		.4byte	.LFB404
+ 1156 0361 56000000 		.4byte	.LFE404-.LFB404
+ 1157 0365 01       		.uleb128 0x1
+ 1158 0366 9C       		.byte	0x9c
+ 1159 0367 BD030000 		.4byte	0x3bd
+ 1160 036b 15       		.uleb128 0x15
+ 1161 036c 00000000 		.4byte	.LASF27
+ 1162 0370 01       		.byte	0x1
+ 1163 0371 3B       		.byte	0x3b
+ 1164 0372 37       		.byte	0x37
+ 1165 0373 28020000 		.4byte	0x228
+ 1166 0377 01       		.uleb128 0x1
+ 1167 0378 50       		.byte	0x50
+ 1168 0379 15       		.uleb128 0x15
+ 1169 037a 3B000000 		.4byte	.LASF33
+ 1170 037e 01       		.byte	0x1
+ 1171 037f 3B       		.byte	0x3b
+ 1172 0380 46       		.byte	0x46
+ 1173 0381 97020000 		.4byte	0x297
+ 1174 0385 01       		.uleb128 0x1
+ 1175 0386 51       		.byte	0x51
+ 1176 0387 18       		.uleb128 0x18
+ 1177 0388 6C656E00 		.ascii	"len\000"
+ 1178 038c 01       		.byte	0x1
+ 1179 038d 3B       		.byte	0x3b
+ 1180 038e 58       		.byte	0x58
+ 1181 038f 4F000000 		.4byte	0x4f
+ 1182 0393 03010000 		.4byte	.LLST10
+ 1183 0397 FD000000 		.4byte	.LVUS10
+ 1184 039b 13       		.uleb128 0x13
+ 1185 039c 6900     		.ascii	"i\000"
+ 1186 039e 01       		.byte	0x1
+ 1187 039f 3C       		.byte	0x3c
+ 1188 03a0 0C       		.byte	0xc
+ 1189 03a1 4F000000 		.4byte	0x4f
+ 1190 03a5 37010000 		.4byte	.LLST11
+ 1191 03a9 2F010000 		.4byte	.LVUS11
+ 1192 03ad 1A       		.uleb128 0x1a
+ 1193 03ae 73717200 		.ascii	"sqr\000"
+ 1194 03b2 01       		.byte	0x1
+ 1195 03b3 3C       		.byte	0x3c
+ 1196 03b4 0E       		.byte	0xe
+ 1197 03b5 7C000000 		.4byte	0x7c
+ 1198 03b9 02       		.uleb128 0x2
+ 1199 03ba 91       		.byte	0x91
+ 1200 03bb 5C       		.sleb128 -36
+ 1201 03bc 00       		.byte	0
+ 1202 03bd 14       		.uleb128 0x14
+ 1203 03be 0D030000 		.4byte	.LASF35
+ 1204 03c2 01       		.byte	0x1
+ 1205 03c3 2B       		.byte	0x2b
+ 1206 03c4 06       		.byte	0x6
+ 1207 03c5 CC000000 		.4byte	.LFB403
+ 1208 03c9 3C000000 		.4byte	.LFE403-.LFB403
+ 1209 03cd 01       		.uleb128 0x1
+ 1210 03ce 9C       		.byte	0x9c
+ 1211 03cf 04040000 		.4byte	0x404
+ 1212 03d3 15       		.uleb128 0x15
+ 1213 03d4 00000000 		.4byte	.LASF27
+ 1214 03d8 01       		.byte	0x1
+ 1215 03d9 2B       		.byte	0x2b
+ 1216 03da 3C       		.byte	0x3c
+ 1217 03db 28020000 		.4byte	0x228
+ 1218 03df 01       		.uleb128 0x1
+ 1219 03e0 50       		.byte	0x50
+ 1220 03e1 11       		.uleb128 0x11
+ 1221 03e2 6B020000 		.4byte	.LASF30
+ 1222 03e6 01       		.byte	0x1
+ 1223 03e7 2C       		.byte	0x2c
+ 1224 03e8 11       		.byte	0x11
+ 1225 03e9 4F000000 		.4byte	0x4f
+ 1226 03ed 76010000 		.4byte	.LLST9
+ 1227 03f1 6E010000 		.4byte	.LVUS9
+ 1228 03f5 15       		.uleb128 0x15
+ 1229 03f6 73020000 		.4byte	.LASF36
+ 1230 03fa 01       		.byte	0x1
+ 1231 03fb 2C       		.byte	0x2c
+ 1232 03fc 22       		.byte	0x22
+ 1233 03fd 4F000000 		.4byte	0x4f
+ 1234 0401 01       		.uleb128 0x1
+ 1235 0402 52       		.byte	0x52
+ 1236 0403 00       		.byte	0
+ 1237 0404 10       		.uleb128 0x10
+ 1238 0405 27010000 		.4byte	.LASF37
+ 1239 0409 01       		.byte	0x1
+ 1240 040a 16       		.byte	0x16
+ 1241 040b 07       		.byte	0x7
+ 1242 040c 04050000 		.4byte	0x504
+ 1243 0410 58000000 		.4byte	.LFB402
+ 1244 0414 74000000 		.4byte	.LFE402-.LFB402
+ 1245 0418 01       		.uleb128 0x1
+ 1246 0419 9C       		.byte	0x9c
+ 1247 041a 04050000 		.4byte	0x504
+ 1248 041e 11       		.uleb128 0x11
+ 1249 041f 00000000 		.4byte	.LASF27
+ 1250 0423 01       		.byte	0x1
+ 1251 0424 16       		.byte	0x16
+ 1252 0425 3C       		.byte	0x3c
+ 1253 0426 28020000 		.4byte	0x228
+ 1254 042a B4010000 		.4byte	.LLST1
+ 1255 042e B0010000 		.4byte	.LVUS1
+ 1256 0432 11       		.uleb128 0x11
+ 1257 0433 6B020000 		.4byte	.LASF30
+ 1258 0437 01       		.byte	0x1
+ 1259 0438 16       		.byte	0x16
+ 1260 0439 4B       		.byte	0x4b
+ 1261 043a 4F000000 		.4byte	0x4f
+ 1262 043e DE010000 		.4byte	.LLST2
+ 1263 0442 D2010000 		.4byte	.LVUS2
+ 1264 0446 1B       		.uleb128 0x1b
+ 1265 0447 C6020000 		.4byte	.LASF38
+ 1266 044b 01       		.byte	0x1
+ 1267 044c 17       		.byte	0x17
+ 1268 044d 19       		.byte	0x19
+ 1269 044e 1B050000 		.4byte	0x51b
+ 1270 0452 05       		.uleb128 0x5
+ 1271 0453 03       		.byte	0x3
+ 1272 0454 10000000 		.4byte	ADC_smpr_cycles.0
+ 1273 0458 1B       		.uleb128 0x1b
+ 1274 0459 53000000 		.4byte	.LASF39
+ 1275 045d 01       		.byte	0x1
+ 1276 045e 19       		.byte	0x19
+ 1277 045f 19       		.byte	0x19
+ 1278 0460 30050000 		.4byte	0x530
+ 1279 0464 05       		.uleb128 0x5
+ 1280 0465 03       		.byte	0x3
+ 1281 0466 00000000 		.4byte	ADC_prediv.1
+ 1282 046a 1C       		.uleb128 0x1c
+ 1283 046b 04030000 		.4byte	.LASF40
+ 1284 046f 01       		.byte	0x1
+ 1285 0470 1B       		.byte	0x1b
+ 1286 0471 0C       		.byte	0xc
+ 1287 0472 4F000000 		.4byte	0x4f
+ 1288 0476 38020000 		.4byte	.LLST3
+ 1289 047a 2E020000 		.4byte	.LVUS3
+ 1290 047e 1C       		.uleb128 0x1c
+ 1291 047f 60020000 		.4byte	.LASF41
+ 1292 0483 01       		.byte	0x1
+ 1293 0484 1C       		.byte	0x1c
+ 1294 0485 0C       		.byte	0xc
+ 1295 0486 4F000000 		.4byte	0x4f
+ 1296 048a 7B020000 		.4byte	.LLST4
+ 1297 048e 79020000 		.4byte	.LVUS4
+ 1298 0492 1D       		.uleb128 0x1d
+ 1299 0493 7C000000 		.4byte	.LBB2
+ 1300 0497 0A000000 		.4byte	.LBE2-.LBB2
+ 1301 049b C8040000 		.4byte	0x4c8
+ 1302 049f 1C       		.uleb128 0x1c
+ 1303 04a0 9D000000 		.4byte	.LASF42
+ 1304 04a4 01       		.byte	0x1
+ 1305 04a5 1E       		.byte	0x1e
+ 1306 04a6 0E       		.byte	0xe
+ 1307 04a7 4F000000 		.4byte	0x4f
+ 1308 04ab 92020000 		.4byte	.LLST5
+ 1309 04af 8E020000 		.4byte	.LVUS5
+ 1310 04b3 1C       		.uleb128 0x1c
+ 1311 04b4 73020000 		.4byte	.LASF36
+ 1312 04b8 01       		.byte	0x1
+ 1313 04b9 1F       		.byte	0x1f
+ 1314 04ba 0E       		.byte	0xe
+ 1315 04bb 4F000000 		.4byte	0x4f
+ 1316 04bf BD020000 		.4byte	.LLST6
+ 1317 04c3 B9020000 		.4byte	.LVUS6
+ 1318 04c7 00       		.byte	0
+ 1319 04c8 1E       		.uleb128 0x1e
+ 1320 04c9 00000000 		.4byte	.Ldebug_ranges0+0
+ 1321 04cd FA040000 		.4byte	0x4fa
+ 1322 04d1 1C       		.uleb128 0x1c
+ 1323 04d2 9D000000 		.4byte	.LASF42
+ 1324 04d6 01       		.byte	0x1
+ 1325 04d7 22       		.byte	0x22
+ 1326 04d8 0E       		.byte	0xe
+ 1327 04d9 4F000000 		.4byte	0x4f
+ 1328 04dd F2020000 		.4byte	.LLST7
+ 1329 04e1 EE020000 		.4byte	.LVUS7
+ 1330 04e5 1C       		.uleb128 0x1c
+ 1331 04e6 73020000 		.4byte	.LASF36
+ 1332 04ea 01       		.byte	0x1
+ 1333 04eb 23       		.byte	0x23
+ 1334 04ec 0E       		.byte	0xe
+ 1335 04ed 4F000000 		.4byte	0x4f
+ 1336 04f1 21030000 		.4byte	.LLST8
+ 1337 04f5 1D030000 		.4byte	.LVUS8
+ 1338 04f9 00       		.byte	0
+ 1339 04fa 1F       		.uleb128 0x1f
+ 1340 04fb 62000000 		.4byte	.LVL3
+ 1341 04ff A8050000 		.4byte	0x5a8
+ 1342 0503 00       		.byte	0
+ 1343 0504 02       		.uleb128 0x2
+ 1344 0505 04       		.byte	0x4
+ 1345 0506 04       		.byte	0x4
+ 1346 0507 89000000 		.4byte	.LASF43
+ 1347 050b 06       		.uleb128 0x6
+ 1348 050c 5B000000 		.4byte	0x5b
+ 1349 0510 1B050000 		.4byte	0x51b
+ 1350 0514 07       		.uleb128 0x7
+ 1351 0515 75000000 		.4byte	0x75
+ 1352 0519 07       		.byte	0x7
+ 1353 051a 00       		.byte	0
+ 1354 051b 04       		.uleb128 0x4
+ 1355 051c 0B050000 		.4byte	0x50b
+ 1356 0520 06       		.uleb128 0x6
+ 1357 0521 5B000000 		.4byte	0x5b
+ 1358 0525 30050000 		.4byte	0x530
+ 1359 0529 07       		.uleb128 0x7
+ 1360 052a 75000000 		.4byte	0x75
+ 1361 052e 03       		.byte	0x3
+ 1362 052f 00       		.byte	0
+ 1363 0530 04       		.uleb128 0x4
+ 1364 0531 20050000 		.4byte	0x520
+ 1365 0535 20       		.uleb128 0x20
+ 1366 0536 E8020000 		.4byte	.LASF44
+ 1367 053a 01       		.byte	0x1
+ 1368 053b 12       		.byte	0x12
+ 1369 053c 06       		.byte	0x6
+ 1370 053d 48000000 		.4byte	.LFB401
+ 1371 0541 10000000 		.4byte	.LFE401-.LFB401
+ 1372 0545 01       		.uleb128 0x1
+ 1373 0546 9C       		.byte	0x9c
+ 1374 0547 20       		.uleb128 0x20
+ 1375 0548 51010000 		.4byte	.LASF45
+ 1376 054c 01       		.byte	0x1
+ 1377 054d 0F       		.byte	0xf
+ 1378 054e 06       		.byte	0x6
+ 1379 054f 38000000 		.4byte	.LFB400
+ 1380 0553 10000000 		.4byte	.LFE400-.LFB400
+ 1381 0557 01       		.uleb128 0x1
+ 1382 0558 9C       		.byte	0x9c
+ 1383 0559 20       		.uleb128 0x20
+ 1384 055a 9F020000 		.4byte	.LASF46
+ 1385 055e 01       		.byte	0x1
+ 1386 055f 0C       		.byte	0xc
+ 1387 0560 06       		.byte	0x6
+ 1388 0561 28000000 		.4byte	.LFB399
+ 1389 0565 10000000 		.4byte	.LFE399-.LFB399
+ 1390 0569 01       		.uleb128 0x1
+ 1391 056a 9C       		.byte	0x9c
+ 1392 056b 20       		.uleb128 0x20
+ 1393 056c 44000000 		.4byte	.LASF47
+ 1394 0570 01       		.byte	0x1
+ 1395 0571 09       		.byte	0x9
+ 1396 0572 06       		.byte	0x6
+ 1397 0573 18000000 		.4byte	.LFB398
+ 1398 0577 10000000 		.4byte	.LFE398-.LFB398
+ 1399 057b 01       		.uleb128 0x1
+ 1400 057c 9C       		.byte	0x9c
+ 1401 057d 14       		.uleb128 0x14
+ 1402 057e 2F030000 		.4byte	.LASF48
+ 1403 0582 01       		.byte	0x1
+ 1404 0583 05       		.byte	0x5
+ 1405 0584 06       		.byte	0x6
+ 1406 0585 00000000 		.4byte	.LFB397
+ 1407 0589 18000000 		.4byte	.LFE397-.LFB397
+ 1408 058d 01       		.uleb128 0x1
+ 1409 058e 9C       		.byte	0x9c
+ 1410 058f A8050000 		.4byte	0x5a8
+ 1411 0593 18       		.uleb128 0x18
+ 1412 0594 76616C00 		.ascii	"val\000"
+ 1413 0598 01       		.byte	0x1
+ 1414 0599 05       		.byte	0x5
+ 1415 059a 1E       		.byte	0x1e
+ 1416 059b 4F000000 		.4byte	0x4f
+ 1417 059f 5A030000 		.4byte	.LLST0
+ 1418 05a3 56030000 		.4byte	.LVUS0
+ 1419 05a7 00       		.byte	0
+ 1420 05a8 21       		.uleb128 0x21
+ 1421 05a9 72000000 		.4byte	.LASF53
+ 1422 05ad 72000000 		.4byte	.LASF53
+ 1423 05b1 04       		.byte	0x4
+ 1424 05b2 1D       		.byte	0x1d
+ 1425 05b3 0A       		.byte	0xa
+ 1426 05b4 00       		.byte	0
+ 1427              		.section	.debug_abbrev,"",%progbits
+ 1428              	.Ldebug_abbrev0:
+ 1429 0000 01       		.uleb128 0x1
+ 1430 0001 11       		.uleb128 0x11
+ 1431 0002 01       		.byte	0x1
+ 1432 0003 25       		.uleb128 0x25
+ 1433 0004 0E       		.uleb128 0xe
+ 1434 0005 13       		.uleb128 0x13
+ 1435 0006 0B       		.uleb128 0xb
+ 1436 0007 03       		.uleb128 0x3
+ 1437 0008 0E       		.uleb128 0xe
+ 1438 0009 1B       		.uleb128 0x1b
+ 1439 000a 0E       		.uleb128 0xe
+ 1440 000b 11       		.uleb128 0x11
+ 1441 000c 01       		.uleb128 0x1
+ 1442 000d 12       		.uleb128 0x12
+ 1443 000e 06       		.uleb128 0x6
+ 1444 000f 10       		.uleb128 0x10
+ 1445 0010 17       		.uleb128 0x17
+ 1446 0011 00       		.byte	0
+ 1447 0012 00       		.byte	0
+ 1448 0013 02       		.uleb128 0x2
+ 1449 0014 24       		.uleb128 0x24
+ 1450 0015 00       		.byte	0
+ 1451 0016 0B       		.uleb128 0xb
+ 1452 0017 0B       		.uleb128 0xb
+ 1453 0018 3E       		.uleb128 0x3e
+ 1454 0019 0B       		.uleb128 0xb
+ 1455 001a 03       		.uleb128 0x3
+ 1456 001b 0E       		.uleb128 0xe
+ 1457 001c 00       		.byte	0
+ 1458 001d 00       		.byte	0
+ 1459 001e 03       		.uleb128 0x3
+ 1460 001f 16       		.uleb128 0x16
+ 1461 0020 00       		.byte	0
+ 1462 0021 03       		.uleb128 0x3
+ 1463 0022 0E       		.uleb128 0xe
+ 1464 0023 3A       		.uleb128 0x3a
+ 1465 0024 0B       		.uleb128 0xb
+ 1466 0025 3B       		.uleb128 0x3b
+ 1467 0026 0B       		.uleb128 0xb
+ 1468 0027 39       		.uleb128 0x39
+ 1469 0028 0B       		.uleb128 0xb
+ 1470 0029 49       		.uleb128 0x49
+ 1471 002a 13       		.uleb128 0x13
+ 1472 002b 00       		.byte	0
+ 1473 002c 00       		.byte	0
+ 1474 002d 04       		.uleb128 0x4
+ 1475 002e 26       		.uleb128 0x26
+ 1476 002f 00       		.byte	0
+ 1477 0030 49       		.uleb128 0x49
+ 1478 0031 13       		.uleb128 0x13
+ 1479 0032 00       		.byte	0
+ 1480 0033 00       		.byte	0
+ 1481 0034 05       		.uleb128 0x5
+ 1482 0035 24       		.uleb128 0x24
+ 1483 0036 00       		.byte	0
+ 1484 0037 0B       		.uleb128 0xb
+ 1485 0038 0B       		.uleb128 0xb
+ 1486 0039 3E       		.uleb128 0x3e
+ 1487 003a 0B       		.uleb128 0xb
+ 1488 003b 03       		.uleb128 0x3
+ 1489 003c 08       		.uleb128 0x8
+ 1490 003d 00       		.byte	0
+ 1491 003e 00       		.byte	0
+ 1492 003f 06       		.uleb128 0x6
+ 1493 0040 01       		.uleb128 0x1
+ 1494 0041 01       		.byte	0x1
+ 1495 0042 49       		.uleb128 0x49
+ 1496 0043 13       		.uleb128 0x13
+ 1497 0044 01       		.uleb128 0x1
+ 1498 0045 13       		.uleb128 0x13
+ 1499 0046 00       		.byte	0
+ 1500 0047 00       		.byte	0
+ 1501 0048 07       		.uleb128 0x7
+ 1502 0049 21       		.uleb128 0x21
+ 1503 004a 00       		.byte	0
+ 1504 004b 49       		.uleb128 0x49
+ 1505 004c 13       		.uleb128 0x13
+ 1506 004d 2F       		.uleb128 0x2f
+ 1507 004e 0B       		.uleb128 0xb
+ 1508 004f 00       		.byte	0
+ 1509 0050 00       		.byte	0
+ 1510 0051 08       		.uleb128 0x8
+ 1511 0052 13       		.uleb128 0x13
+ 1512 0053 01       		.byte	0x1
+ 1513 0054 03       		.uleb128 0x3
+ 1514 0055 0E       		.uleb128 0xe
+ 1515 0056 0B       		.uleb128 0xb
+ 1516 0057 0B       		.uleb128 0xb
+ 1517 0058 3A       		.uleb128 0x3a
+ 1518 0059 0B       		.uleb128 0xb
+ 1519 005a 3B       		.uleb128 0x3b
+ 1520 005b 0B       		.uleb128 0xb
+ 1521 005c 39       		.uleb128 0x39
+ 1522 005d 0B       		.uleb128 0xb
+ 1523 005e 01       		.uleb128 0x1
+ 1524 005f 13       		.uleb128 0x13
+ 1525 0060 00       		.byte	0
+ 1526 0061 00       		.byte	0
+ 1527 0062 09       		.uleb128 0x9
+ 1528 0063 0D       		.uleb128 0xd
+ 1529 0064 00       		.byte	0
+ 1530 0065 03       		.uleb128 0x3
+ 1531 0066 08       		.uleb128 0x8
+ 1532 0067 3A       		.uleb128 0x3a
+ 1533 0068 0B       		.uleb128 0xb
+ 1534 0069 3B       		.uleb128 0x3b
+ 1535 006a 0B       		.uleb128 0xb
+ 1536 006b 39       		.uleb128 0x39
+ 1537 006c 0B       		.uleb128 0xb
+ 1538 006d 49       		.uleb128 0x49
+ 1539 006e 13       		.uleb128 0x13
+ 1540 006f 38       		.uleb128 0x38
+ 1541 0070 0B       		.uleb128 0xb
+ 1542 0071 00       		.byte	0
+ 1543 0072 00       		.byte	0
+ 1544 0073 0A       		.uleb128 0xa
+ 1545 0074 0D       		.uleb128 0xd
+ 1546 0075 00       		.byte	0
+ 1547 0076 03       		.uleb128 0x3
+ 1548 0077 0E       		.uleb128 0xe
+ 1549 0078 3A       		.uleb128 0x3a
+ 1550 0079 0B       		.uleb128 0xb
+ 1551 007a 3B       		.uleb128 0x3b
+ 1552 007b 0B       		.uleb128 0xb
+ 1553 007c 39       		.uleb128 0x39
+ 1554 007d 0B       		.uleb128 0xb
+ 1555 007e 49       		.uleb128 0x49
+ 1556 007f 13       		.uleb128 0x13
+ 1557 0080 38       		.uleb128 0x38
+ 1558 0081 0B       		.uleb128 0xb
+ 1559 0082 00       		.byte	0
+ 1560 0083 00       		.byte	0
+ 1561 0084 0B       		.uleb128 0xb
+ 1562 0085 0D       		.uleb128 0xd
+ 1563 0086 00       		.byte	0
+ 1564 0087 03       		.uleb128 0x3
+ 1565 0088 0E       		.uleb128 0xe
+ 1566 0089 3A       		.uleb128 0x3a
+ 1567 008a 0B       		.uleb128 0xb
+ 1568 008b 3B       		.uleb128 0x3b
+ 1569 008c 05       		.uleb128 0x5
+ 1570 008d 39       		.uleb128 0x39
+ 1571 008e 0B       		.uleb128 0xb
+ 1572 008f 49       		.uleb128 0x49
+ 1573 0090 13       		.uleb128 0x13
+ 1574 0091 38       		.uleb128 0x38
+ 1575 0092 0B       		.uleb128 0xb
+ 1576 0093 00       		.byte	0
+ 1577 0094 00       		.byte	0
+ 1578 0095 0C       		.uleb128 0xc
+ 1579 0096 0D       		.uleb128 0xd
+ 1580 0097 00       		.byte	0
+ 1581 0098 03       		.uleb128 0x3
+ 1582 0099 08       		.uleb128 0x8
+ 1583 009a 3A       		.uleb128 0x3a
+ 1584 009b 0B       		.uleb128 0xb
+ 1585 009c 3B       		.uleb128 0x3b
+ 1586 009d 05       		.uleb128 0x5
+ 1587 009e 39       		.uleb128 0x39
+ 1588 009f 0B       		.uleb128 0xb
+ 1589 00a0 49       		.uleb128 0x49
+ 1590 00a1 13       		.uleb128 0x13
+ 1591 00a2 38       		.uleb128 0x38
+ 1592 00a3 0B       		.uleb128 0xb
+ 1593 00a4 00       		.byte	0
+ 1594 00a5 00       		.byte	0
+ 1595 00a6 0D       		.uleb128 0xd
+ 1596 00a7 35       		.uleb128 0x35
+ 1597 00a8 00       		.byte	0
+ 1598 00a9 49       		.uleb128 0x49
+ 1599 00aa 13       		.uleb128 0x13
+ 1600 00ab 00       		.byte	0
+ 1601 00ac 00       		.byte	0
+ 1602 00ad 0E       		.uleb128 0xe
+ 1603 00ae 13       		.uleb128 0x13
+ 1604 00af 01       		.byte	0x1
+ 1605 00b0 03       		.uleb128 0x3
+ 1606 00b1 0E       		.uleb128 0xe
+ 1607 00b2 0B       		.uleb128 0xb
+ 1608 00b3 0B       		.uleb128 0xb
+ 1609 00b4 3A       		.uleb128 0x3a
+ 1610 00b5 0B       		.uleb128 0xb
+ 1611 00b6 3B       		.uleb128 0x3b
+ 1612 00b7 05       		.uleb128 0x5
+ 1613 00b8 39       		.uleb128 0x39
+ 1614 00b9 0B       		.uleb128 0xb
+ 1615 00ba 01       		.uleb128 0x1
+ 1616 00bb 13       		.uleb128 0x13
+ 1617 00bc 00       		.byte	0
+ 1618 00bd 00       		.byte	0
+ 1619 00be 0F       		.uleb128 0xf
+ 1620 00bf 34       		.uleb128 0x34
+ 1621 00c0 00       		.byte	0
+ 1622 00c1 03       		.uleb128 0x3
+ 1623 00c2 0E       		.uleb128 0xe
+ 1624 00c3 3A       		.uleb128 0x3a
+ 1625 00c4 0B       		.uleb128 0xb
+ 1626 00c5 3B       		.uleb128 0x3b
+ 1627 00c6 05       		.uleb128 0x5
+ 1628 00c7 39       		.uleb128 0x39
+ 1629 00c8 0B       		.uleb128 0xb
+ 1630 00c9 49       		.uleb128 0x49
+ 1631 00ca 13       		.uleb128 0x13
+ 1632 00cb 3F       		.uleb128 0x3f
+ 1633 00cc 19       		.uleb128 0x19
+ 1634 00cd 3C       		.uleb128 0x3c
+ 1635 00ce 19       		.uleb128 0x19
+ 1636 00cf 00       		.byte	0
+ 1637 00d0 00       		.byte	0
+ 1638 00d1 10       		.uleb128 0x10
+ 1639 00d2 2E       		.uleb128 0x2e
+ 1640 00d3 01       		.byte	0x1
+ 1641 00d4 3F       		.uleb128 0x3f
+ 1642 00d5 19       		.uleb128 0x19
+ 1643 00d6 03       		.uleb128 0x3
+ 1644 00d7 0E       		.uleb128 0xe
+ 1645 00d8 3A       		.uleb128 0x3a
+ 1646 00d9 0B       		.uleb128 0xb
+ 1647 00da 3B       		.uleb128 0x3b
+ 1648 00db 0B       		.uleb128 0xb
+ 1649 00dc 39       		.uleb128 0x39
+ 1650 00dd 0B       		.uleb128 0xb
+ 1651 00de 27       		.uleb128 0x27
+ 1652 00df 19       		.uleb128 0x19
+ 1653 00e0 49       		.uleb128 0x49
+ 1654 00e1 13       		.uleb128 0x13
+ 1655 00e2 11       		.uleb128 0x11
+ 1656 00e3 01       		.uleb128 0x1
+ 1657 00e4 12       		.uleb128 0x12
+ 1658 00e5 06       		.uleb128 0x6
+ 1659 00e6 40       		.uleb128 0x40
+ 1660 00e7 18       		.uleb128 0x18
+ 1661 00e8 9742     		.uleb128 0x2117
+ 1662 00ea 19       		.uleb128 0x19
+ 1663 00eb 01       		.uleb128 0x1
+ 1664 00ec 13       		.uleb128 0x13
+ 1665 00ed 00       		.byte	0
+ 1666 00ee 00       		.byte	0
+ 1667 00ef 11       		.uleb128 0x11
+ 1668 00f0 05       		.uleb128 0x5
+ 1669 00f1 00       		.byte	0
+ 1670 00f2 03       		.uleb128 0x3
+ 1671 00f3 0E       		.uleb128 0xe
+ 1672 00f4 3A       		.uleb128 0x3a
+ 1673 00f5 0B       		.uleb128 0xb
+ 1674 00f6 3B       		.uleb128 0x3b
+ 1675 00f7 0B       		.uleb128 0xb
+ 1676 00f8 39       		.uleb128 0x39
+ 1677 00f9 0B       		.uleb128 0xb
+ 1678 00fa 49       		.uleb128 0x49
+ 1679 00fb 13       		.uleb128 0x13
+ 1680 00fc 02       		.uleb128 0x2
+ 1681 00fd 17       		.uleb128 0x17
+ 1682 00fe B742     		.uleb128 0x2137
+ 1683 0100 17       		.uleb128 0x17
+ 1684 0101 00       		.byte	0
+ 1685 0102 00       		.byte	0
+ 1686 0103 12       		.uleb128 0x12
+ 1687 0104 0F       		.uleb128 0xf
+ 1688 0105 00       		.byte	0
+ 1689 0106 0B       		.uleb128 0xb
+ 1690 0107 0B       		.uleb128 0xb
+ 1691 0108 49       		.uleb128 0x49
+ 1692 0109 13       		.uleb128 0x13
+ 1693 010a 00       		.byte	0
+ 1694 010b 00       		.byte	0
+ 1695 010c 13       		.uleb128 0x13
+ 1696 010d 34       		.uleb128 0x34
+ 1697 010e 00       		.byte	0
+ 1698 010f 03       		.uleb128 0x3
+ 1699 0110 08       		.uleb128 0x8
+ 1700 0111 3A       		.uleb128 0x3a
+ 1701 0112 0B       		.uleb128 0xb
+ 1702 0113 3B       		.uleb128 0x3b
+ 1703 0114 0B       		.uleb128 0xb
+ 1704 0115 39       		.uleb128 0x39
+ 1705 0116 0B       		.uleb128 0xb
+ 1706 0117 49       		.uleb128 0x49
+ 1707 0118 13       		.uleb128 0x13
+ 1708 0119 02       		.uleb128 0x2
+ 1709 011a 17       		.uleb128 0x17
+ 1710 011b B742     		.uleb128 0x2137
+ 1711 011d 17       		.uleb128 0x17
+ 1712 011e 00       		.byte	0
+ 1713 011f 00       		.byte	0
+ 1714 0120 14       		.uleb128 0x14
+ 1715 0121 2E       		.uleb128 0x2e
+ 1716 0122 01       		.byte	0x1
+ 1717 0123 3F       		.uleb128 0x3f
+ 1718 0124 19       		.uleb128 0x19
+ 1719 0125 03       		.uleb128 0x3
+ 1720 0126 0E       		.uleb128 0xe
+ 1721 0127 3A       		.uleb128 0x3a
+ 1722 0128 0B       		.uleb128 0xb
+ 1723 0129 3B       		.uleb128 0x3b
+ 1724 012a 0B       		.uleb128 0xb
+ 1725 012b 39       		.uleb128 0x39
+ 1726 012c 0B       		.uleb128 0xb
+ 1727 012d 27       		.uleb128 0x27
+ 1728 012e 19       		.uleb128 0x19
+ 1729 012f 11       		.uleb128 0x11
+ 1730 0130 01       		.uleb128 0x1
+ 1731 0131 12       		.uleb128 0x12
+ 1732 0132 06       		.uleb128 0x6
+ 1733 0133 40       		.uleb128 0x40
+ 1734 0134 18       		.uleb128 0x18
+ 1735 0135 9742     		.uleb128 0x2117
+ 1736 0137 19       		.uleb128 0x19
+ 1737 0138 01       		.uleb128 0x1
+ 1738 0139 13       		.uleb128 0x13
+ 1739 013a 00       		.byte	0
+ 1740 013b 00       		.byte	0
+ 1741 013c 15       		.uleb128 0x15
+ 1742 013d 05       		.uleb128 0x5
+ 1743 013e 00       		.byte	0
+ 1744 013f 03       		.uleb128 0x3
+ 1745 0140 0E       		.uleb128 0xe
+ 1746 0141 3A       		.uleb128 0x3a
+ 1747 0142 0B       		.uleb128 0xb
+ 1748 0143 3B       		.uleb128 0x3b
+ 1749 0144 0B       		.uleb128 0xb
+ 1750 0145 39       		.uleb128 0x39
+ 1751 0146 0B       		.uleb128 0xb
+ 1752 0147 49       		.uleb128 0x49
+ 1753 0148 13       		.uleb128 0x13
+ 1754 0149 02       		.uleb128 0x2
+ 1755 014a 18       		.uleb128 0x18
+ 1756 014b 00       		.byte	0
+ 1757 014c 00       		.byte	0
+ 1758 014d 16       		.uleb128 0x16
+ 1759 014e 898201   		.uleb128 0x4109
+ 1760 0151 01       		.byte	0x1
+ 1761 0152 11       		.uleb128 0x11
+ 1762 0153 01       		.uleb128 0x1
+ 1763 0154 31       		.uleb128 0x31
+ 1764 0155 13       		.uleb128 0x13
+ 1765 0156 00       		.byte	0
+ 1766 0157 00       		.byte	0
+ 1767 0158 17       		.uleb128 0x17
+ 1768 0159 8A8201   		.uleb128 0x410a
+ 1769 015c 00       		.byte	0
+ 1770 015d 02       		.uleb128 0x2
+ 1771 015e 18       		.uleb128 0x18
+ 1772 015f 9142     		.uleb128 0x2111
+ 1773 0161 18       		.uleb128 0x18
+ 1774 0162 00       		.byte	0
+ 1775 0163 00       		.byte	0
+ 1776 0164 18       		.uleb128 0x18
+ 1777 0165 05       		.uleb128 0x5
+ 1778 0166 00       		.byte	0
+ 1779 0167 03       		.uleb128 0x3
+ 1780 0168 08       		.uleb128 0x8
+ 1781 0169 3A       		.uleb128 0x3a
+ 1782 016a 0B       		.uleb128 0xb
+ 1783 016b 3B       		.uleb128 0x3b
+ 1784 016c 0B       		.uleb128 0xb
+ 1785 016d 39       		.uleb128 0x39
+ 1786 016e 0B       		.uleb128 0xb
+ 1787 016f 49       		.uleb128 0x49
+ 1788 0170 13       		.uleb128 0x13
+ 1789 0171 02       		.uleb128 0x2
+ 1790 0172 17       		.uleb128 0x17
+ 1791 0173 B742     		.uleb128 0x2137
+ 1792 0175 17       		.uleb128 0x17
+ 1793 0176 00       		.byte	0
+ 1794 0177 00       		.byte	0
+ 1795 0178 19       		.uleb128 0x19
+ 1796 0179 898201   		.uleb128 0x4109
+ 1797 017c 01       		.byte	0x1
+ 1798 017d 11       		.uleb128 0x11
+ 1799 017e 01       		.uleb128 0x1
+ 1800 017f 9542     		.uleb128 0x2115
+ 1801 0181 19       		.uleb128 0x19
+ 1802 0182 31       		.uleb128 0x31
+ 1803 0183 13       		.uleb128 0x13
+ 1804 0184 00       		.byte	0
+ 1805 0185 00       		.byte	0
+ 1806 0186 1A       		.uleb128 0x1a
+ 1807 0187 34       		.uleb128 0x34
+ 1808 0188 00       		.byte	0
+ 1809 0189 03       		.uleb128 0x3
+ 1810 018a 08       		.uleb128 0x8
+ 1811 018b 3A       		.uleb128 0x3a
+ 1812 018c 0B       		.uleb128 0xb
+ 1813 018d 3B       		.uleb128 0x3b
+ 1814 018e 0B       		.uleb128 0xb
+ 1815 018f 39       		.uleb128 0x39
+ 1816 0190 0B       		.uleb128 0xb
+ 1817 0191 49       		.uleb128 0x49
+ 1818 0192 13       		.uleb128 0x13
+ 1819 0193 02       		.uleb128 0x2
+ 1820 0194 18       		.uleb128 0x18
+ 1821 0195 00       		.byte	0
+ 1822 0196 00       		.byte	0
+ 1823 0197 1B       		.uleb128 0x1b
+ 1824 0198 34       		.uleb128 0x34
+ 1825 0199 00       		.byte	0
+ 1826 019a 03       		.uleb128 0x3
+ 1827 019b 0E       		.uleb128 0xe
+ 1828 019c 3A       		.uleb128 0x3a
+ 1829 019d 0B       		.uleb128 0xb
+ 1830 019e 3B       		.uleb128 0x3b
+ 1831 019f 0B       		.uleb128 0xb
+ 1832 01a0 39       		.uleb128 0x39
+ 1833 01a1 0B       		.uleb128 0xb
+ 1834 01a2 49       		.uleb128 0x49
+ 1835 01a3 13       		.uleb128 0x13
+ 1836 01a4 02       		.uleb128 0x2
+ 1837 01a5 18       		.uleb128 0x18
+ 1838 01a6 00       		.byte	0
+ 1839 01a7 00       		.byte	0
+ 1840 01a8 1C       		.uleb128 0x1c
+ 1841 01a9 34       		.uleb128 0x34
+ 1842 01aa 00       		.byte	0
+ 1843 01ab 03       		.uleb128 0x3
+ 1844 01ac 0E       		.uleb128 0xe
+ 1845 01ad 3A       		.uleb128 0x3a
+ 1846 01ae 0B       		.uleb128 0xb
+ 1847 01af 3B       		.uleb128 0x3b
+ 1848 01b0 0B       		.uleb128 0xb
+ 1849 01b1 39       		.uleb128 0x39
+ 1850 01b2 0B       		.uleb128 0xb
+ 1851 01b3 49       		.uleb128 0x49
+ 1852 01b4 13       		.uleb128 0x13
+ 1853 01b5 02       		.uleb128 0x2
+ 1854 01b6 17       		.uleb128 0x17
+ 1855 01b7 B742     		.uleb128 0x2137
+ 1856 01b9 17       		.uleb128 0x17
+ 1857 01ba 00       		.byte	0
+ 1858 01bb 00       		.byte	0
+ 1859 01bc 1D       		.uleb128 0x1d
+ 1860 01bd 0B       		.uleb128 0xb
+ 1861 01be 01       		.byte	0x1
+ 1862 01bf 11       		.uleb128 0x11
+ 1863 01c0 01       		.uleb128 0x1
+ 1864 01c1 12       		.uleb128 0x12
+ 1865 01c2 06       		.uleb128 0x6
+ 1866 01c3 01       		.uleb128 0x1
+ 1867 01c4 13       		.uleb128 0x13
+ 1868 01c5 00       		.byte	0
+ 1869 01c6 00       		.byte	0
+ 1870 01c7 1E       		.uleb128 0x1e
+ 1871 01c8 0B       		.uleb128 0xb
+ 1872 01c9 01       		.byte	0x1
+ 1873 01ca 55       		.uleb128 0x55
+ 1874 01cb 17       		.uleb128 0x17
+ 1875 01cc 01       		.uleb128 0x1
+ 1876 01cd 13       		.uleb128 0x13
+ 1877 01ce 00       		.byte	0
+ 1878 01cf 00       		.byte	0
+ 1879 01d0 1F       		.uleb128 0x1f
+ 1880 01d1 898201   		.uleb128 0x4109
+ 1881 01d4 00       		.byte	0
+ 1882 01d5 11       		.uleb128 0x11
+ 1883 01d6 01       		.uleb128 0x1
+ 1884 01d7 31       		.uleb128 0x31
+ 1885 01d8 13       		.uleb128 0x13
+ 1886 01d9 00       		.byte	0
+ 1887 01da 00       		.byte	0
+ 1888 01db 20       		.uleb128 0x20
+ 1889 01dc 2E       		.uleb128 0x2e
+ 1890 01dd 00       		.byte	0
+ 1891 01de 3F       		.uleb128 0x3f
+ 1892 01df 19       		.uleb128 0x19
+ 1893 01e0 03       		.uleb128 0x3
+ 1894 01e1 0E       		.uleb128 0xe
+ 1895 01e2 3A       		.uleb128 0x3a
+ 1896 01e3 0B       		.uleb128 0xb
+ 1897 01e4 3B       		.uleb128 0x3b
+ 1898 01e5 0B       		.uleb128 0xb
+ 1899 01e6 39       		.uleb128 0x39
+ 1900 01e7 0B       		.uleb128 0xb
+ 1901 01e8 11       		.uleb128 0x11
+ 1902 01e9 01       		.uleb128 0x1
+ 1903 01ea 12       		.uleb128 0x12
+ 1904 01eb 06       		.uleb128 0x6
+ 1905 01ec 40       		.uleb128 0x40
+ 1906 01ed 18       		.uleb128 0x18
+ 1907 01ee 9742     		.uleb128 0x2117
+ 1908 01f0 19       		.uleb128 0x19
+ 1909 01f1 00       		.byte	0
+ 1910 01f2 00       		.byte	0
+ 1911 01f3 21       		.uleb128 0x21
+ 1912 01f4 2E       		.uleb128 0x2e
+ 1913 01f5 00       		.byte	0
+ 1914 01f6 3F       		.uleb128 0x3f
+ 1915 01f7 19       		.uleb128 0x19
+ 1916 01f8 3C       		.uleb128 0x3c
+ 1917 01f9 19       		.uleb128 0x19
+ 1918 01fa 6E       		.uleb128 0x6e
+ 1919 01fb 0E       		.uleb128 0xe
+ 1920 01fc 03       		.uleb128 0x3
+ 1921 01fd 0E       		.uleb128 0xe
+ 1922 01fe 3A       		.uleb128 0x3a
+ 1923 01ff 0B       		.uleb128 0xb
+ 1924 0200 3B       		.uleb128 0x3b
+ 1925 0201 0B       		.uleb128 0xb
+ 1926 0202 39       		.uleb128 0x39
+ 1927 0203 0B       		.uleb128 0xb
+ 1928 0204 00       		.byte	0
+ 1929 0205 00       		.byte	0
+ 1930 0206 00       		.byte	0
+ 1931              		.section	.debug_loc,"",%progbits
+ 1932              	.Ldebug_loc0:
+ 1933              	.LVUS18:
+ 1934 0000 00       		.uleb128 0
+ 1935 0001 00       		.uleb128 .LVU197
+ 1936 0002 00       		.uleb128 .LVU197
+ 1937 0003 00       		.uleb128 0
+ 1938              	.LLST18:
+ 1939 0004 C8010000 		.4byte	.LVL40-.Ltext0
+ 1940 0008 DC010000 		.4byte	.LVL41-.Ltext0
+ 1941 000c 0100     		.2byte	0x1
+ 1942 000e 50       		.byte	0x50
+ 1943 000f DC010000 		.4byte	.LVL41-.Ltext0
+ 1944 0013 DE010000 		.4byte	.LFE408-.Ltext0
+ 1945 0017 0400     		.2byte	0x4
+ 1946 0019 F3       		.byte	0xf3
+ 1947 001a 01       		.uleb128 0x1
+ 1948 001b 50       		.byte	0x50
+ 1949 001c 9F       		.byte	0x9f
+ 1950 001d 00000000 		.4byte	0
+ 1951 0021 00000000 		.4byte	0
+ 1952              	.LVUS14:
+ 1953 0025 00       		.uleb128 0
+ 1954 0026 00       		.uleb128 .LVU184
+ 1955 0027 00       		.uleb128 .LVU184
+ 1956 0028 00       		.uleb128 0
+ 1957              	.LLST14:
+ 1958 0029 8A010000 		.4byte	.LVL34-.Ltext0
+ 1959 002d C6010000 		.4byte	.LVL39-.Ltext0
+ 1960 0031 0100     		.2byte	0x1
+ 1961 0033 50       		.byte	0x50
+ 1962 0034 C6010000 		.4byte	.LVL39-.Ltext0
+ 1963 0038 C8010000 		.4byte	.LFE407-.Ltext0
+ 1964 003c 0400     		.2byte	0x4
+ 1965 003e F3       		.byte	0xf3
+ 1966 003f 01       		.uleb128 0x1
+ 1967 0040 50       		.byte	0x50
+ 1968 0041 9F       		.byte	0x9f
+ 1969 0042 00000000 		.4byte	0
+ 1970 0046 00000000 		.4byte	0
+ 1971              	.LVUS15:
+ 1972 004a 00       		.uleb128 0
+ 1973 004b 00       		.uleb128 .LVU171
+ 1974 004c 00       		.uleb128 .LVU171
+ 1975 004d 00       		.uleb128 0
+ 1976              	.LLST15:
+ 1977 004e 8A010000 		.4byte	.LVL34-.Ltext0
+ 1978 0052 AA010000 		.4byte	.LVL36-.Ltext0
+ 1979 0056 0100     		.2byte	0x1
+ 1980 0058 51       		.byte	0x51
+ 1981 0059 AA010000 		.4byte	.LVL36-.Ltext0
+ 1982 005d C8010000 		.4byte	.LFE407-.Ltext0
+ 1983 0061 0400     		.2byte	0x4
+ 1984 0063 F3       		.byte	0xf3
+ 1985 0064 01       		.uleb128 0x1
+ 1986 0065 51       		.byte	0x51
+ 1987 0066 9F       		.byte	0x9f
+ 1988 0067 00000000 		.4byte	0
+ 1989 006b 00000000 		.4byte	0
+ 1990              	.LVUS16:
+ 1991 006f 00       		.uleb128 .LVU164
+ 1992 0070 00       		.uleb128 0
+ 1993              	.LLST16:
+ 1994 0071 A6010000 		.4byte	.LVL35-.Ltext0
+ 1995 0075 C8010000 		.4byte	.LFE407-.Ltext0
+ 1996 0079 0100     		.2byte	0x1
+ 1997 007b 52       		.byte	0x52
+ 1998 007c 00000000 		.4byte	0
+ 1999 0080 00000000 		.4byte	0
+ 2000              	.LVUS17:
+ 2001 0084 01       		.uleb128 .LVU165
+ 2002 0085 00       		.uleb128 .LVU171
+ 2003 0086 00       		.uleb128 .LVU180
+ 2004 0087 00       		.uleb128 .LVU183
+ 2005              	.LLST17:
+ 2006 0088 A6010000 		.4byte	.LVL35-.Ltext0
+ 2007 008c AA010000 		.4byte	.LVL36-.Ltext0
+ 2008 0090 0200     		.2byte	0x2
+ 2009 0092 30       		.byte	0x30
+ 2010 0093 9F       		.byte	0x9f
+ 2011 0094 BA010000 		.4byte	.LVL37-.Ltext0
+ 2012 0098 C4010000 		.4byte	.LVL38-.Ltext0
+ 2013 009c 0100     		.2byte	0x1
+ 2014 009e 53       		.byte	0x53
+ 2015 009f 00000000 		.4byte	0
+ 2016 00a3 00000000 		.4byte	0
+ 2017              	.LVUS13:
+ 2018 00a7 00       		.uleb128 0
+ 2019 00a8 00       		.uleb128 .LVU147
+ 2020 00a9 00       		.uleb128 .LVU147
+ 2021 00aa 00       		.uleb128 .LVU151
+ 2022 00ab 00       		.uleb128 .LVU151
+ 2023 00ac 00       		.uleb128 .LVU152
+ 2024              	.LLST13:
+ 2025 00ad 72010000 		.4byte	.LVL30-.Ltext0
+ 2026 00b1 7A010000 		.4byte	.LVL31-.Ltext0
+ 2027 00b5 0100     		.2byte	0x1
+ 2028 00b7 51       		.byte	0x51
+ 2029 00b8 7A010000 		.4byte	.LVL31-.Ltext0
+ 2030 00bc 80010000 		.4byte	.LVL32-.Ltext0
+ 2031 00c0 0200     		.2byte	0x2
+ 2032 00c2 91       		.byte	0x91
+ 2033 00c3 74       		.sleb128 -12
+ 2034 00c4 80010000 		.4byte	.LVL32-.Ltext0
+ 2035 00c8 83010000 		.4byte	.LVL33-1-.Ltext0
+ 2036 00cc 0200     		.2byte	0x2
+ 2037 00ce 71       		.byte	0x71
+ 2038 00cf 00       		.sleb128 0
+ 2039 00d0 00000000 		.4byte	0
+ 2040 00d4 00000000 		.4byte	0
+ 2041              	.LVUS12:
+ 2042 00d8 00       		.uleb128 0
+ 2043 00d9 00       		.uleb128 .LVU140
+ 2044 00da 00       		.uleb128 .LVU140
+ 2045 00db 00       		.uleb128 0
+ 2046              	.LLST12:
+ 2047 00dc 5E010000 		.4byte	.LVL28-.Ltext0
+ 2048 00e0 71010000 		.4byte	.LVL29-1-.Ltext0
+ 2049 00e4 0100     		.2byte	0x1
+ 2050 00e6 52       		.byte	0x52
+ 2051 00e7 71010000 		.4byte	.LVL29-1-.Ltext0
+ 2052 00eb 72010000 		.4byte	.LFE405-.Ltext0
+ 2053 00ef 0400     		.2byte	0x4
+ 2054 00f1 F3       		.byte	0xf3
+ 2055 00f2 01       		.uleb128 0x1
+ 2056 00f3 52       		.byte	0x52
+ 2057 00f4 9F       		.byte	0x9f
+ 2058 00f5 00000000 		.4byte	0
+ 2059 00f9 00000000 		.4byte	0
+ 2060              	.LVUS10:
+ 2061 00fd 00       		.uleb128 0
+ 2062 00fe 00       		.uleb128 .LVU106
+ 2063 00ff 00       		.uleb128 .LVU106
+ 2064 0100 00       		.uleb128 .LVU118
+ 2065 0101 00       		.uleb128 .LVU118
+ 2066 0102 00       		.uleb128 0
+ 2067              	.LLST10:
+ 2068 0103 08010000 		.4byte	.LVL20-.Ltext0
+ 2069 0107 1E010000 		.4byte	.LVL24-.Ltext0
+ 2070 010b 0100     		.2byte	0x1
+ 2071 010d 52       		.byte	0x52
+ 2072 010e 1E010000 		.4byte	.LVL24-.Ltext0
+ 2073 0112 34010000 		.4byte	.LVL26-.Ltext0
+ 2074 0116 0400     		.2byte	0x4
+ 2075 0118 F3       		.byte	0xf3
+ 2076 0119 01       		.uleb128 0x1
+ 2077 011a 52       		.byte	0x52
+ 2078 011b 9F       		.byte	0x9f
+ 2079 011c 34010000 		.4byte	.LVL26-.Ltext0
+ 2080 0120 5E010000 		.4byte	.LFE404-.Ltext0
+ 2081 0124 0100     		.2byte	0x1
+ 2082 0126 52       		.byte	0x52
+ 2083 0127 00000000 		.4byte	0
+ 2084 012b 00000000 		.4byte	0
+ 2085              	.LVUS11:
+ 2086 012f 01       		.uleb128 .LVU100
+ 2087 0130 00       		.uleb128 .LVU101
+ 2088 0131 00       		.uleb128 .LVU101
+ 2089 0132 00       		.uleb128 .LVU105
+ 2090 0133 00       		.uleb128 .LVU105
+ 2091 0134 00       		.uleb128 .LVU107
+ 2092 0135 00       		.uleb128 .LVU118
+ 2093 0136 00       		.uleb128 0
+ 2094              	.LLST11:
+ 2095 0137 14010000 		.4byte	.LVL21-.Ltext0
+ 2096 013b 16010000 		.4byte	.LVL22-.Ltext0
+ 2097 013f 0200     		.2byte	0x2
+ 2098 0141 30       		.byte	0x30
+ 2099 0142 9F       		.byte	0x9f
+ 2100 0143 16010000 		.4byte	.LVL22-.Ltext0
+ 2101 0147 1C010000 		.4byte	.LVL23-.Ltext0
+ 2102 014b 0100     		.2byte	0x1
+ 2103 014d 53       		.byte	0x53
+ 2104 014e 1C010000 		.4byte	.LVL23-.Ltext0
+ 2105 0152 20010000 		.4byte	.LVL25-.Ltext0
+ 2106 0156 0300     		.2byte	0x3
+ 2107 0158 73       		.byte	0x73
+ 2108 0159 01       		.sleb128 1
+ 2109 015a 9F       		.byte	0x9f
+ 2110 015b 34010000 		.4byte	.LVL26-.Ltext0
+ 2111 015f 5E010000 		.4byte	.LFE404-.Ltext0
+ 2112 0163 0100     		.2byte	0x1
+ 2113 0165 53       		.byte	0x53
+ 2114 0166 00000000 		.4byte	0
+ 2115 016a 00000000 		.4byte	0
+ 2116              	.LVUS9:
+ 2117 016e 00       		.uleb128 0
+ 2118 016f 00       		.uleb128 .LVU75
+ 2119 0170 00       		.uleb128 .LVU75
+ 2120 0171 00       		.uleb128 .LVU81
+ 2121 0172 00       		.uleb128 .LVU81
+ 2122 0173 00       		.uleb128 .LVU85
+ 2123 0174 00       		.uleb128 .LVU85
+ 2124 0175 00       		.uleb128 0
+ 2125              	.LLST9:
+ 2126 0176 CC000000 		.4byte	.LVL16-.Ltext0
+ 2127 017a D8000000 		.4byte	.LVL17-.Ltext0
+ 2128 017e 0100     		.2byte	0x1
+ 2129 0180 51       		.byte	0x51
+ 2130 0181 D8000000 		.4byte	.LVL17-.Ltext0
+ 2131 0185 EA000000 		.4byte	.LVL18-.Ltext0
+ 2132 0189 0400     		.2byte	0x4
+ 2133 018b F3       		.byte	0xf3
+ 2134 018c 01       		.uleb128 0x1
+ 2135 018d 51       		.byte	0x51
+ 2136 018e 9F       		.byte	0x9f
+ 2137 018f EA000000 		.4byte	.LVL18-.Ltext0
+ 2138 0193 F2000000 		.4byte	.LVL19-.Ltext0
+ 2139 0197 0100     		.2byte	0x1
+ 2140 0199 51       		.byte	0x51
+ 2141 019a F2000000 		.4byte	.LVL19-.Ltext0
+ 2142 019e 08010000 		.4byte	.LFE403-.Ltext0
+ 2143 01a2 0400     		.2byte	0x4
+ 2144 01a4 F3       		.byte	0xf3
+ 2145 01a5 01       		.uleb128 0x1
+ 2146 01a6 51       		.byte	0x51
+ 2147 01a7 9F       		.byte	0x9f
+ 2148 01a8 00000000 		.4byte	0
+ 2149 01ac 00000000 		.4byte	0
+ 2150              	.LVUS1:
+ 2151 01b0 00       		.uleb128 0
+ 2152 01b1 00       		.uleb128 .LVU32
+ 2153 01b2 00       		.uleb128 .LVU32
+ 2154 01b3 00       		.uleb128 0
+ 2155              	.LLST1:
+ 2156 01b4 58000000 		.4byte	.LVL2-.Ltext0
+ 2157 01b8 61000000 		.4byte	.LVL3-1-.Ltext0
+ 2158 01bc 0100     		.2byte	0x1
+ 2159 01be 50       		.byte	0x50
+ 2160 01bf 61000000 		.4byte	.LVL3-1-.Ltext0
+ 2161 01c3 CC000000 		.4byte	.LFE402-.Ltext0
+ 2162 01c7 0100     		.2byte	0x1
+ 2163 01c9 55       		.byte	0x55
+ 2164 01ca 00000000 		.4byte	0
+ 2165 01ce 00000000 		.4byte	0
+ 2166              	.LVUS2:
+ 2167 01d2 00       		.uleb128 0
+ 2168 01d3 00       		.uleb128 .LVU32
+ 2169 01d4 00       		.uleb128 .LVU32
+ 2170 01d5 00       		.uleb128 .LVU45
+ 2171 01d6 00       		.uleb128 .LVU45
+ 2172 01d7 00       		.uleb128 .LVU56
+ 2173 01d8 00       		.uleb128 .LVU56
+ 2174 01d9 00       		.uleb128 .LVU63
+ 2175 01da 00       		.uleb128 .LVU63
+ 2176 01db 00       		.uleb128 .LVU65
+ 2177 01dc 00       		.uleb128 .LVU65
+ 2178 01dd 00       		.uleb128 0
+ 2179              	.LLST2:
+ 2180 01de 58000000 		.4byte	.LVL2-.Ltext0
+ 2181 01e2 61000000 		.4byte	.LVL3-1-.Ltext0
+ 2182 01e6 0100     		.2byte	0x1
+ 2183 01e8 51       		.byte	0x51
+ 2184 01e9 61000000 		.4byte	.LVL3-1-.Ltext0
+ 2185 01ed 82000000 		.4byte	.LVL7-.Ltext0
+ 2186 01f1 0100     		.2byte	0x1
+ 2187 01f3 54       		.byte	0x54
+ 2188 01f4 82000000 		.4byte	.LVL7-.Ltext0
+ 2189 01f8 AA000000 		.4byte	.LVL11-.Ltext0
+ 2190 01fc 0400     		.2byte	0x4
+ 2191 01fe F3       		.byte	0xf3
+ 2192 01ff 01       		.uleb128 0x1
+ 2193 0200 51       		.byte	0x51
+ 2194 0201 9F       		.byte	0x9f
+ 2195 0202 AA000000 		.4byte	.LVL11-.Ltext0
+ 2196 0206 B4000000 		.4byte	.LVL14-.Ltext0
+ 2197 020a 0100     		.2byte	0x1
+ 2198 020c 54       		.byte	0x54
+ 2199 020d B4000000 		.4byte	.LVL14-.Ltext0
+ 2200 0211 BC000000 		.4byte	.LVL15-.Ltext0
+ 2201 0215 0400     		.2byte	0x4
+ 2202 0217 F3       		.byte	0xf3
+ 2203 0218 01       		.uleb128 0x1
+ 2204 0219 51       		.byte	0x51
+ 2205 021a 9F       		.byte	0x9f
+ 2206 021b BC000000 		.4byte	.LVL15-.Ltext0
+ 2207 021f CC000000 		.4byte	.LFE402-.Ltext0
+ 2208 0223 0100     		.2byte	0x1
+ 2209 0225 54       		.byte	0x54
+ 2210 0226 00000000 		.4byte	0
+ 2211 022a 00000000 		.4byte	0
+ 2212              	.LVUS3:
+ 2213 022e 00       		.uleb128 .LVU37
+ 2214 022f 00       		.uleb128 .LVU46
+ 2215 0230 00       		.uleb128 .LVU46
+ 2216 0231 00       		.uleb128 .LVU52
+ 2217 0232 00       		.uleb128 .LVU56
+ 2218 0233 00       		.uleb128 .LVU61
+ 2219 0234 00       		.uleb128 .LVU61
+ 2220 0235 00       		.uleb128 .LVU65
+ 2221 0236 00       		.uleb128 .LVU65
+ 2222 0237 00       		.uleb128 0
+ 2223              	.LLST3:
+ 2224 0238 7A000000 		.4byte	.LVL4-.Ltext0
+ 2225 023c 86000000 		.4byte	.LVL8-.Ltext0
+ 2226 0240 0100     		.2byte	0x1
+ 2227 0242 52       		.byte	0x52
+ 2228 0243 86000000 		.4byte	.LVL8-.Ltext0
+ 2229 0247 98000000 		.4byte	.LVL10-.Ltext0
+ 2230 024b 0200     		.2byte	0x2
+ 2231 024d 90       		.byte	0x90
+ 2232 024e 4E       		.uleb128 0x4e
+ 2233 024f AA000000 		.4byte	.LVL11-.Ltext0
+ 2234 0253 B0000000 		.4byte	.LVL13-.Ltext0
+ 2235 0257 0100     		.2byte	0x1
+ 2236 0259 52       		.byte	0x52
+ 2237 025a B0000000 		.4byte	.LVL13-.Ltext0
+ 2238 025e BC000000 		.4byte	.LVL15-.Ltext0
+ 2239 0262 0200     		.2byte	0x2
+ 2240 0264 90       		.byte	0x90
+ 2241 0265 4E       		.uleb128 0x4e
+ 2242 0266 BC000000 		.4byte	.LVL15-.Ltext0
+ 2243 026a CC000000 		.4byte	.LFE402-.Ltext0
+ 2244 026e 0100     		.2byte	0x1
+ 2245 0270 52       		.byte	0x52
+ 2246 0271 00000000 		.4byte	0
+ 2247 0275 00000000 		.4byte	0
+ 2248              	.LVUS4:
+ 2249 0279 00       		.uleb128 .LVU49
+ 2250 027a 00       		.uleb128 .LVU56
+ 2251              	.LLST4:
+ 2252 027b 90000000 		.4byte	.LVL9-.Ltext0
+ 2253 027f AA000000 		.4byte	.LVL11-.Ltext0
+ 2254 0283 0100     		.2byte	0x1
+ 2255 0285 53       		.byte	0x53
+ 2256 0286 00000000 		.4byte	0
+ 2257 028a 00000000 		.4byte	0
+ 2258              	.LVUS5:
+ 2259 028e 01       		.uleb128 .LVU41
+ 2260 028f 00       		.uleb128 .LVU45
+ 2261 0290 00       		.uleb128 .LVU45
+ 2262 0291 00       		.uleb128 .LVU46
+ 2263              	.LLST5:
+ 2264 0292 7C000000 		.4byte	.LVL5-.Ltext0
+ 2265 0296 82000000 		.4byte	.LVL7-.Ltext0
+ 2266 029a 0500     		.2byte	0x5
+ 2267 029c 74       		.byte	0x74
+ 2268 029d 00       		.sleb128 0
+ 2269 029e 33       		.byte	0x33
+ 2270 029f 1E       		.byte	0x1e
+ 2271 02a0 9F       		.byte	0x9f
+ 2272 02a1 82000000 		.4byte	.LVL7-.Ltext0
+ 2273 02a5 86000000 		.4byte	.LVL8-.Ltext0
+ 2274 02a9 0600     		.2byte	0x6
+ 2275 02ab F3       		.byte	0xf3
+ 2276 02ac 01       		.uleb128 0x1
+ 2277 02ad 51       		.byte	0x51
+ 2278 02ae 33       		.byte	0x33
+ 2279 02af 1E       		.byte	0x1e
+ 2280 02b0 9F       		.byte	0x9f
+ 2281 02b1 00000000 		.4byte	0
+ 2282 02b5 00000000 		.4byte	0
+ 2283              	.LVUS6:
+ 2284 02b9 00       		.uleb128 .LVU43
+ 2285 02ba 00       		.uleb128 .LVU45
+ 2286 02bb 00       		.uleb128 .LVU45
+ 2287 02bc 00       		.uleb128 .LVU46
+ 2288              	.LLST6:
+ 2289 02bd 7E000000 		.4byte	.LVL6-.Ltext0
+ 2290 02c1 82000000 		.4byte	.LVL7-.Ltext0
+ 2291 02c5 0A00     		.2byte	0xa
+ 2292 02c7 71       		.byte	0x71
+ 2293 02c8 00       		.sleb128 0
+ 2294 02c9 74       		.byte	0x74
+ 2295 02ca 00       		.sleb128 0
+ 2296 02cb 33       		.byte	0x33
+ 2297 02cc 1E       		.byte	0x1e
+ 2298 02cd 25       		.byte	0x25
+ 2299 02ce 37       		.byte	0x37
+ 2300 02cf 1A       		.byte	0x1a
+ 2301 02d0 9F       		.byte	0x9f
+ 2302 02d1 82000000 		.4byte	.LVL7-.Ltext0
+ 2303 02d5 86000000 		.4byte	.LVL8-.Ltext0
+ 2304 02d9 0B00     		.2byte	0xb
+ 2305 02db 71       		.byte	0x71
+ 2306 02dc 00       		.sleb128 0
+ 2307 02dd F3       		.byte	0xf3
+ 2308 02de 01       		.uleb128 0x1
+ 2309 02df 51       		.byte	0x51
+ 2310 02e0 33       		.byte	0x33
+ 2311 02e1 1E       		.byte	0x1e
+ 2312 02e2 25       		.byte	0x25
+ 2313 02e3 37       		.byte	0x37
+ 2314 02e4 1A       		.byte	0x1a
+ 2315 02e5 9F       		.byte	0x9f
+ 2316 02e6 00000000 		.4byte	0
+ 2317 02ea 00000000 		.4byte	0
+ 2318              	.LVUS7:
+ 2319 02ee 01       		.uleb128 .LVU59
+ 2320 02ef 00       		.uleb128 .LVU63
+ 2321 02f0 00       		.uleb128 .LVU63
+ 2322 02f1 00       		.uleb128 .LVU65
+ 2323              	.LLST7:
+ 2324 02f2 AE000000 		.4byte	.LVL12-.Ltext0
+ 2325 02f6 B4000000 		.4byte	.LVL14-.Ltext0
+ 2326 02fa 0700     		.2byte	0x7
+ 2327 02fc 74       		.byte	0x74
+ 2328 02fd 00       		.sleb128 0
+ 2329 02fe 33       		.byte	0x33
+ 2330 02ff 1E       		.byte	0x1e
+ 2331 0300 4E       		.byte	0x4e
+ 2332 0301 1C       		.byte	0x1c
+ 2333 0302 9F       		.byte	0x9f
+ 2334 0303 B4000000 		.4byte	.LVL14-.Ltext0
+ 2335 0307 BC000000 		.4byte	.LVL15-.Ltext0
+ 2336 030b 0800     		.2byte	0x8
+ 2337 030d F3       		.byte	0xf3
+ 2338 030e 01       		.uleb128 0x1
+ 2339 030f 51       		.byte	0x51
+ 2340 0310 33       		.byte	0x33
+ 2341 0311 1E       		.byte	0x1e
+ 2342 0312 4E       		.byte	0x4e
+ 2343 0313 1C       		.byte	0x1c
+ 2344 0314 9F       		.byte	0x9f
+ 2345 0315 00000000 		.4byte	0
+ 2346 0319 00000000 		.4byte	0
+ 2347              	.LVUS8:
+ 2348 031d 00       		.uleb128 .LVU61
+ 2349 031e 00       		.uleb128 .LVU63
+ 2350 031f 00       		.uleb128 .LVU63
+ 2351 0320 00       		.uleb128 .LVU65
+ 2352              	.LLST8:
+ 2353 0321 B0000000 		.4byte	.LVL13-.Ltext0
+ 2354 0325 B4000000 		.4byte	.LVL14-.Ltext0
+ 2355 0329 0C00     		.2byte	0xc
+ 2356 032b 72       		.byte	0x72
+ 2357 032c 00       		.sleb128 0
+ 2358 032d 74       		.byte	0x74
+ 2359 032e 00       		.sleb128 0
+ 2360 032f 33       		.byte	0x33
+ 2361 0330 1E       		.byte	0x1e
+ 2362 0331 4E       		.byte	0x4e
+ 2363 0332 1C       		.byte	0x1c
+ 2364 0333 25       		.byte	0x25
+ 2365 0334 37       		.byte	0x37
+ 2366 0335 1A       		.byte	0x1a
+ 2367 0336 9F       		.byte	0x9f
+ 2368 0337 B4000000 		.4byte	.LVL14-.Ltext0
+ 2369 033b BC000000 		.4byte	.LVL15-.Ltext0
+ 2370 033f 0D00     		.2byte	0xd
+ 2371 0341 72       		.byte	0x72
+ 2372 0342 00       		.sleb128 0
+ 2373 0343 F3       		.byte	0xf3
+ 2374 0344 01       		.uleb128 0x1
+ 2375 0345 51       		.byte	0x51
+ 2376 0346 33       		.byte	0x33
+ 2377 0347 1E       		.byte	0x1e
+ 2378 0348 4E       		.byte	0x4e
+ 2379 0349 1C       		.byte	0x1c
+ 2380 034a 25       		.byte	0x25
+ 2381 034b 37       		.byte	0x37
+ 2382 034c 1A       		.byte	0x1a
+ 2383 034d 9F       		.byte	0x9f
+ 2384 034e 00000000 		.4byte	0
+ 2385 0352 00000000 		.4byte	0
+ 2386              	.LVUS0:
+ 2387 0356 00       		.uleb128 0
+ 2388 0357 00       		.uleb128 .LVU4
+ 2389 0358 00       		.uleb128 .LVU4
+ 2390 0359 00       		.uleb128 0
+ 2391              	.LLST0:
+ 2392 035a 00000000 		.4byte	.LVL0-.Ltext0
+ 2393 035e 06000000 		.4byte	.LVL1-.Ltext0
+ 2394 0362 0100     		.2byte	0x1
+ 2395 0364 50       		.byte	0x50
+ 2396 0365 06000000 		.4byte	.LVL1-.Ltext0
+ 2397 0369 18000000 		.4byte	.LFE397-.Ltext0
+ 2398 036d 0400     		.2byte	0x4
+ 2399 036f F3       		.byte	0xf3
+ 2400 0370 01       		.uleb128 0x1
+ 2401 0371 50       		.byte	0x50
+ 2402 0372 9F       		.byte	0x9f
+ 2403 0373 00000000 		.4byte	0
+ 2404 0377 00000000 		.4byte	0
+ 2405              		.section	.debug_aranges,"",%progbits
+ 2406 0000 1C000000 		.4byte	0x1c
+ 2407 0004 0200     		.2byte	0x2
+ 2408 0006 00000000 		.4byte	.Ldebug_info0
+ 2409 000a 04       		.byte	0x4
+ 2410 000b 00       		.byte	0
+ 2411 000c 0000     		.2byte	0
+ 2412 000e 0000     		.2byte	0
+ 2413 0010 00000000 		.4byte	.Ltext0
+ 2414 0014 DE010000 		.4byte	.Letext0-.Ltext0
+ 2415 0018 00000000 		.4byte	0
+ 2416 001c 00000000 		.4byte	0
+ 2417              		.section	.debug_ranges,"",%progbits
+ 2418              	.Ldebug_ranges0:
+ 2419 0000 86000000 		.4byte	.LBB3-.Ltext0
+ 2420 0004 90000000 		.4byte	.LBE3-.Ltext0
+ 2421 0008 AE000000 		.4byte	.LBB4-.Ltext0
+ 2422 000c BC000000 		.4byte	.LBE4-.Ltext0
+ 2423 0010 00000000 		.4byte	0
+ 2424 0014 00000000 		.4byte	0
+ 2425              		.section	.debug_line,"",%progbits
+ 2426              	.Ldebug_line0:
+ 2427 0000 B2030000 		.section	.debug_str,"MS",%progbits,1
+ 2427      03007600 
+ 2427      00000201 
+ 2427      FB0E0D00 
+ 2427      01010101 
+ 2428              	.LASF27:
+ 2429 0000 41444378 		.ascii	"ADCx\000"
+ 2429      00
+ 2430              	.LASF31:
+ 2431 0005 4144435F 		.ascii	"ADC_init_single_channel\000"
+ 2431      696E6974 
+ 2431      5F73696E 
+ 2431      676C655F 
+ 2431      6368616E 
+ 2432              	.LASF19:
+ 2433 001d 4A445231 		.ascii	"JDR1\000"
+ 2433      00
+ 2434              	.LASF20:
+ 2435 0022 4A445232 		.ascii	"JDR2\000"
+ 2435      00
+ 2436              	.LASF21:
+ 2437 0027 4A445233 		.ascii	"JDR3\000"
+ 2437      00
+ 2438              	.LASF22:
+ 2439 002c 4A445234 		.ascii	"JDR4\000"
+ 2439      00
+ 2440              	.LASF1:
+ 2441 0031 73686F72 		.ascii	"short int\000"
+ 2441      7420696E 
+ 2441      7400
+ 2442              	.LASF33:
+ 2443 003b 73657175 		.ascii	"sequence\000"
+ 2443      656E6365 
+ 2443      00
+ 2444              	.LASF47:
+ 2445 0044 656E6162 		.ascii	"enable_Vrefint\000"
+ 2445      6C655F56 
+ 2445      72656669 
+ 2445      6E7400
+ 2446              	.LASF39:
+ 2447 0053 4144435F 		.ascii	"ADC_prediv\000"
+ 2447      70726564 
+ 2447      697600
+ 2448              	.LASF18:
+ 2449 005e 4A535152 		.ascii	"JSQR\000"
+ 2449      00
+ 2450              	.LASF23:
+ 2451 0063 41444378 		.ascii	"ADCx_registers\000"
+ 2451      5F726567 
+ 2451      69737465 
+ 2451      727300
+ 2452              	.LASF53:
+ 2453 0072 6765745F 		.ascii	"get_APB2CLK\000"
+ 2453      41504232 
+ 2453      434C4B00 
+ 2454              	.LASF29:
+ 2455 007e 4144435F 		.ascii	"ADC_common\000"
+ 2455      636F6D6D 
+ 2455      6F6E00
+ 2456              	.LASF43:
+ 2457 0089 666C6F61 		.ascii	"float\000"
+ 2457      7400
+ 2458              	.LASF3:
+ 2459 008f 6C6F6E67 		.ascii	"long long int\000"
+ 2459      206C6F6E 
+ 2459      6720696E 
+ 2459      7400
+ 2460              	.LASF42:
+ 2461 009d 6269745F 		.ascii	"bit_offset\000"
+ 2461      6F666673 
+ 2461      657400
+ 2462              	.LASF2:
+ 2463 00a8 6C6F6E67 		.ascii	"long int\000"
+ 2463      20696E74 
+ 2463      00
+ 2464              	.LASF28:
+ 2465 00b1 64617461 		.ascii	"data_buffer\000"
+ 2465      5F627566 
+ 2465      66657200 
+ 2466              	.LASF34:
+ 2467 00bd 4144435F 		.ascii	"ADC_set_sequence\000"
+ 2467      7365745F 
+ 2467      73657175 
+ 2467      656E6365 
+ 2467      00
+ 2468              	.LASF11:
+ 2469 00ce 4A4F4652 		.ascii	"JOFR1\000"
+ 2469      3100
+ 2470              	.LASF12:
+ 2471 00d4 4A4F4652 		.ascii	"JOFR2\000"
+ 2471      3200
+ 2472              	.LASF14:
+ 2473 00da 4A4F4652 		.ascii	"JOFR4\000"
+ 2473      3400
+ 2474              	.LASF4:
+ 2475 00e0 756E7369 		.ascii	"unsigned char\000"
+ 2475      676E6564 
+ 2475      20636861 
+ 2475      7200
+ 2476              	.LASF0:
+ 2477 00ee 7369676E 		.ascii	"signed char\000"
+ 2477      65642063 
+ 2477      68617200 
+ 2478              	.LASF7:
+ 2479 00fa 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2479      206C6F6E 
+ 2479      6720756E 
+ 2479      7369676E 
+ 2479      65642069 
+ 2480              	.LASF52:
+ 2481 0111 75696E74 		.ascii	"uint32_t\000"
+ 2481      33325F74 
+ 2481      00
+ 2482              	.LASF8:
+ 2483 011a 756E7369 		.ascii	"unsigned int\000"
+ 2483      676E6564 
+ 2483      20696E74 
+ 2483      00
+ 2484              	.LASF37:
+ 2485 0127 6765745F 		.ascii	"get_sampling_time_us\000"
+ 2485      73616D70 
+ 2485      6C696E67 
+ 2485      5F74696D 
+ 2485      655F7573 
+ 2486              	.LASF24:
+ 2487 013c 4144435F 		.ascii	"ADC_common_registers\000"
+ 2487      636F6D6D 
+ 2487      6F6E5F72 
+ 2487      65676973 
+ 2487      74657273 
+ 2488              	.LASF45:
+ 2489 0151 64697361 		.ascii	"disable_Vrefint\000"
+ 2489      626C655F 
+ 2489      56726566 
+ 2489      696E7400 
+ 2490              	.LASF13:
+ 2491 0161 4A4F4652 		.ascii	"JOFR3\000"
+ 2491      3300
+ 2492              	.LASF5:
+ 2493 0167 73686F72 		.ascii	"short unsigned int\000"
+ 2493      7420756E 
+ 2493      7369676E 
+ 2493      65642069 
+ 2493      6E7400
+ 2494              	.LASF49:
+ 2495 017a 474E5520 		.ascii	"GNU C99 10.3.1 20210621 (release) -mtune=cortex-m4 "
+ 2495      43393920 
+ 2495      31302E33 
+ 2495      2E312032 
+ 2495      30323130 
+ 2496 01ad 2D6D7468 		.ascii	"-mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -march=a"
+ 2496      756D6220 
+ 2496      2D6D666C 
+ 2496      6F61742D 
+ 2496      6162693D 
+ 2497 01e0 726D7637 		.ascii	"rmv7e-m+fp -g -O0 -Os -std=gnu99 -fsingle-precision"
+ 2497      652D6D2B 
+ 2497      6670202D 
+ 2497      67202D4F 
+ 2497      30202D4F 
+ 2498 0213 2D636F6E 		.ascii	"-constant\000"
+ 2498      7374616E 
+ 2498      7400
+ 2499              	.LASF51:
+ 2500 021d 2F686F6D 		.ascii	"/home/matthieu/Documents/Projet_Final_MicroC/Projet"
+ 2500      652F6D61 
+ 2500      74746869 
+ 2500      65752F44 
+ 2500      6F63756D 
+ 2501 0250 4D696372 		.ascii	"Micro/c_project\000"
+ 2501      6F2F635F 
+ 2501      70726F6A 
+ 2501      65637400 
+ 2502              	.LASF41:
+ 2503 0260 4144435F 		.ascii	"ADC_cycles\000"
+ 2503      6379636C 
+ 2503      657300
+ 2504              	.LASF30:
+ 2505 026b 6368616E 		.ascii	"channel\000"
+ 2505      6E656C00 
+ 2506              	.LASF36:
+ 2507 0273 736D7072 		.ascii	"smpr\000"
+ 2507      00
+ 2508              	.LASF26:
+ 2509 0278 4144435F 		.ascii	"ADC_convert_sequence\000"
+ 2509      636F6E76 
+ 2509      6572745F 
+ 2509      73657175 
+ 2509      656E6365 
+ 2510              	.LASF6:
+ 2511 028d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2511      20756E73 
+ 2511      69676E65 
+ 2511      6420696E 
+ 2511      7400
+ 2512              	.LASF46:
+ 2513 029f 656E6162 		.ascii	"enable_Vbat\000"
+ 2513      6C655F56 
+ 2513      62617400 
+ 2514              	.LASF25:
+ 2515 02ab 4144435F 		.ascii	"ADC_convert_single_channel\000"
+ 2515      636F6E76 
+ 2515      6572745F 
+ 2515      73696E67 
+ 2515      6C655F63 
+ 2516              	.LASF38:
+ 2517 02c6 4144435F 		.ascii	"ADC_smpr_cycles\000"
+ 2517      736D7072 
+ 2517      5F637963 
+ 2517      6C657300 
+ 2518              	.LASF32:
+ 2519 02d6 4144435F 		.ascii	"ADC_init_sequence\000"
+ 2519      696E6974 
+ 2519      5F736571 
+ 2519      75656E63 
+ 2519      6500
+ 2520              	.LASF44:
+ 2521 02e8 64697361 		.ascii	"disable_Vbat\000"
+ 2521      626C655F 
+ 2521      56626174 
+ 2521      00
+ 2522              	.LASF15:
+ 2523 02f5 53515231 		.ascii	"SQR1\000"
+ 2523      00
+ 2524              	.LASF16:
+ 2525 02fa 53515232 		.ascii	"SQR2\000"
+ 2525      00
+ 2526              	.LASF17:
+ 2527 02ff 53515233 		.ascii	"SQR3\000"
+ 2527      00
+ 2528              	.LASF40:
+ 2529 0304 4144435F 		.ascii	"ADC_freq\000"
+ 2529      66726571 
+ 2529      00
+ 2530              	.LASF35:
+ 2531 030d 4144435F 		.ascii	"ADC_set_sampling_time\000"
+ 2531      7365745F 
+ 2531      73616D70 
+ 2531      6C696E67 
+ 2531      5F74696D 
+ 2532              	.LASF9:
+ 2533 0323 534D5052 		.ascii	"SMPR1\000"
+ 2533      3100
+ 2534              	.LASF10:
+ 2535 0329 534D5052 		.ascii	"SMPR2\000"
+ 2535      3200
+ 2536              	.LASF48:
+ 2537 032f 4144435F 		.ascii	"ADC_set_prediv\000"
+ 2537      7365745F 
+ 2537      70726564 
+ 2537      697600
+ 2538              	.LASF50:
+ 2539 033e 7372632F 		.ascii	"src/adc.c\000"
+ 2539      6164632E 
+ 2539      6300
+ 2540              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 adc.c
+     /tmp/ccY1hGHU.s:17     .text:0000000000000000 $t
+     /tmp/ccY1hGHU.s:25     .text:0000000000000000 ADC_set_prediv
+     /tmp/ccY1hGHU.s:54     .text:0000000000000014 $d
+     /tmp/ccY1hGHU.s:58     .text:0000000000000018 $t
+     /tmp/ccY1hGHU.s:65     .text:0000000000000018 enable_Vrefint
+     /tmp/ccY1hGHU.s:83     .text:0000000000000024 $d
+     /tmp/ccY1hGHU.s:87     .text:0000000000000028 $t
+     /tmp/ccY1hGHU.s:94     .text:0000000000000028 enable_Vbat
+     /tmp/ccY1hGHU.s:112    .text:0000000000000034 $d
+     /tmp/ccY1hGHU.s:116    .text:0000000000000038 $t
+     /tmp/ccY1hGHU.s:123    .text:0000000000000038 disable_Vrefint
+     /tmp/ccY1hGHU.s:141    .text:0000000000000044 $d
+     /tmp/ccY1hGHU.s:145    .text:0000000000000048 $t
+     /tmp/ccY1hGHU.s:152    .text:0000000000000048 disable_Vbat
+     /tmp/ccY1hGHU.s:170    .text:0000000000000054 $d
+     /tmp/ccY1hGHU.s:174    .text:0000000000000058 $t
+     /tmp/ccY1hGHU.s:181    .text:0000000000000058 get_sampling_time_us
+     /tmp/ccY1hGHU.s:295    .text:00000000000000c0 $d
+     /tmp/ccY1hGHU.s:301    .text:00000000000000cc $t
+     /tmp/ccY1hGHU.s:308    .text:00000000000000cc ADC_set_sampling_time
+     /tmp/ccY1hGHU.s:382    .text:0000000000000108 ADC_set_sequence
+     /tmp/ccY1hGHU.s:489    .text:000000000000015e ADC_init_sequence
+     /tmp/ccY1hGHU.s:528    .text:0000000000000172 ADC_init_single_channel
+     /tmp/ccY1hGHU.s:573    .text:000000000000018a ADC_convert_sequence
+     /tmp/ccY1hGHU.s:657    .text:00000000000001c8 ADC_convert_single_channel
+     /tmp/ccY1hGHU.s:693    .rodata:0000000000000000 $d
+     /tmp/ccY1hGHU.s:697    .rodata:0000000000000000 ADC_prediv.1
+     /tmp/ccY1hGHU.s:704    .rodata:0000000000000010 ADC_smpr_cycles.0
+
+UNDEFINED SYMBOLS
+ADC_common
+get_APB2CLK
