@@ -12,7 +12,6 @@
 volatile uint32_t flag = 0, flag_v = 0, compteur = 0, j=0, jtaille=8, i = 0, mode = 0, compteur2=10000;
 volatile float tempo = 0;
 
-
 #define DO 261
 #define SID 261
 #define DOD 277
